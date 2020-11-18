@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Listado de Cursos</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../../WEB-INF/plantillas/plantilla.xhtml">
+            <ui:define name="content">
+                <div class="card border-primary mb-3">
+                    <div class="card-header text-muted">Listado de Cursos</div>
+                    <div class="card-body text-primary">
+                        <h:form>
+                            <h:commandButton action="#{cursoBean.nuevoCurso()}" value="Crear Curso" class="btn btn-primary my-2" />
+                            <h:dataTable value="#{cursoBean.cursos}" var="curso" class="table table-hover pl-2">
+                                <h:column>
+                                    <f:facet name="header">Id</f:facet>
+                                    <h:outputText value="#{curso.cursoId}"></h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Nombre</f:facet>
+                                    <h:outputText value="#{curso.nombre}"></h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Descripcion</f:facet>
+                                    <h:outputText value="#{curso.descripcion}"></h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Curso Publicado</f:facet>
+                                    <h:outputText value="#{curso.cursoPublicado}"></h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Duracion del Curso</f:facet>
+                                    <h:outputText value="#{curso.duracionCurso}"></h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Departamento</f:facet>
+                                    <h:outputText value="#{curso.departamento}"></h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Editar</f:facet>
+                                    <h:commandButton action="" value="Editar" class="btn btn-secondary btn-sm" style="background:#3176B1"></h:commandButton>
+                                </h:column>
+                                
+
+                            </h:dataTable>
+                        </h:form>
+                    </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

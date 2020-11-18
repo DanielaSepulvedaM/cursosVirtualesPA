@@ -1,0 +1,14 @@
+package co.edu.ucentral.ventasapp.interfaz;
+
+import co.edu.ucentral.cursos.models.Curso;
+import java.util.List;
+
+public interface ICursoService {
+    public List<Curso> listarCursos();
+    public Curso encontrarCursoPorId(int cursoId);
+    public void guardarCurso(Curso curso);
+    public void modificarCurso(Curso curso);
+    public void eliminarCurso(Curso curso);
+    //public void CrearCurso(String nombre,String descripcion, Boolean publicada, int duracion);
+    
+}

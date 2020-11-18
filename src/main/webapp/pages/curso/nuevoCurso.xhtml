@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Nueva Curso</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../../WEB-INF/plantillas/plantilla.xhtml">
+            <ui:define name="content">
+                <div class="card border-primary mb-3">
+                    <div class="card-header">Creacion Curso</div>
+                    <div class="card-body text-primary">
+                        <h:form>
+                            <h:commandButton action="listadoCursos" value="Regresar" style="text-decoration: underline;" class="btn btn-light my-2 text-muted"/>
+                            <div class="form-group">
+                                <label for="nombre">Nombre del curso</label>
+                                <input type="text" class="form-control" id="nombre" value="#{cursoBean.curso.nombre}" placeholder="Ingrese el nombre del curso">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="facultad">Facultad</label>
+                                <select class="form-control" id="facultad">
+                                    <option>Facultad</option>
+                                    <option>Facultad 2</option>
+                                    <option>Facultad 3</option>
+                                    <option>Facultad 4</option>
+                                    <option>Facultad 5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="departamento">Departamento</label>
+                                <select class="form-control" id="departamento">
+                                    <option>Departamento 1</option>
+                                    <option>Departamento 2</option>
+                                    <option>Departamento 3</option>
+                                    <option>Departamento 4</option>
+                                    <option>Departamento 5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="descripcion">Descripcion</label>
+                                <textarea class="form-control" id="descripcion" rows="3"></textarea>
+                            </div> 
+                        </h:form>
+                    </div>   
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
