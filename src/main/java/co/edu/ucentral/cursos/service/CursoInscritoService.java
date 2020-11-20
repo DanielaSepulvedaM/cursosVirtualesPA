@@ -7,12 +7,12 @@ import co.edu.ucentral.ventasapp.interfaz.ICursoInscritoService;
 public class CursoInscritoService extends DAO<CursoInscrito, Integer> implements ICursoInscritoService{
 
     public CursoInscritoService(EntityManager em) {
-        super(em);
+        super();
     }
 
    
     public CursoInscrito find(Integer id) {
-        return em.find(CursoInscrito.class, id);
+        return _em.find(CursoInscrito.class, id);
     }
 
     

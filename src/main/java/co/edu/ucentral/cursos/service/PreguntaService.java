@@ -8,12 +8,12 @@ import co.edu.ucentral.ventasapp.interfaz.IPreguntaService;
 public class PreguntaService extends DAO<Pregunta, Integer> implements IPreguntaService{
 
     public PreguntaService(EntityManager em) {
-        super(em);
+        super();
     }
 
     @Override
     public Pregunta find(Integer id) {
-        return em.find(Pregunta.class, id);
+        return _em.find(Pregunta.class, id);
     }
 
 

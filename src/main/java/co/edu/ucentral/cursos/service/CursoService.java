@@ -5,17 +5,23 @@ import co.edu.ucentral.cursos.models.Curso;
 import java.util.List;
 import javax.persistence.EntityManager;
 import co.edu.ucentral.ventasapp.interfaz.ICursoService;
+import javax.ejb.Stateless;
+import javax.persistence.PersistenceContext;
 
-
+@Stateless
 public class CursoService extends DAO<Curso, Integer> implements ICursoService{
 
-    public CursoService(EntityManager em) {
-        super(em);
+   @PersistenceContext(unitName="CursosUP")
+    EntityManager manager;
+    
+    public CursoService() {
+        super();
+        this._em = manager;    
     }
 
     @Override
     public Curso find(Integer id) {
-        return em.find(Curso.class, id);
+        return manager.find(Curso.class, id);
     }
 
     @Override

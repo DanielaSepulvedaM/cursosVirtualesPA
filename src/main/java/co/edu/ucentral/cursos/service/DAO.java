@@ -4,13 +4,13 @@ package co.edu.ucentral.cursos.service;
 import javax.persistence.EntityManager;
 
 public abstract class DAO<T,K> {
-    EntityManager em;
-    public DAO(EntityManager em){
-        this.em = em;
+    protected EntityManager _em;
+    
+    public DAO(){
     }
     
     public  EntityManager getEntityManager(){
-        return this.em;
+        return this._em;
     }
     
     //find(K id):Busca una entidad utilizando su clave primaria devolviendo null ni se encuentra.
@@ -21,16 +21,16 @@ public abstract class DAO<T,K> {
     
     /*
     public ArrayList<T> select(){
-        em.
+        _em.
     }
     */
     //create(T t):Hace persistente una entidad que se para como parametro y la devulve
                   //se devuelve una entidad gestionada.
     public T create(T t) {
         checkTransaction();
-        em.persist(t);
-        em.flush();
-        em.refresh(t);
+        _em.persist(t);
+        _em.flush();
+        _em.refresh(t);
         return t;
     }
     
@@ -41,19 +41,19 @@ public abstract class DAO<T,K> {
                   //la entidad se volcara a la BD.
     public T update(T t) {
         checkTransaction();
-        return (T) em.merge(t);
+        return (T) _em.merge(t);
     }
     
     //delete(T t): Se elimina una entidad de la BD llamando al metodo remove una vez nos hemos 
                  //asegurado de que la entidad esta gestionada llamando al metodo merge.
     public void delete(T t) {
         checkTransaction();
-        t = em.merge(t);
-        em.remove(t);
+        t = _em.merge(t);
+        _em.remove(t);
     }
 
     private void checkTransaction() {
-        if (!em.getTransaction().isActive())
+        if (!_em.getTransaction().isActive())
             throw new RuntimeException("Transacción inactiva");
     }
 }

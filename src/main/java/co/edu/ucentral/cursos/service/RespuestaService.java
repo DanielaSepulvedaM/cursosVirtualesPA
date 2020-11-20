@@ -8,11 +8,11 @@ import co.edu.ucentral.ventasapp.interfaz.IRespuestaService;
 public class RespuestaService extends DAO<Respuesta, Integer> implements IRespuestaService{
 
     public RespuestaService(EntityManager em) {
-        super(em);
+        super();
     }
 
     @Override
     public Respuesta find(Integer id) {
-        return em.find(Respuesta.class, id);
+        return _em.find(Respuesta.class, id);
     }    
 }

@@ -8,12 +8,12 @@ import co.edu.ucentral.ventasapp.interfaz.IEvaluacionService;
 public class EvaluacionService extends DAO<Evaluacion, Integer> implements IEvaluacionService{
 
     public EvaluacionService(EntityManager em) {
-        super(em);
+        super();
     }
 
     @Override
     public Evaluacion find(Integer id) {
-        return em.find(Evaluacion.class, id);
+        return _em.find(Evaluacion.class, id);
     }
     
 }
