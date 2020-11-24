@@ -14,23 +14,23 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class DepartamentoService extends DAO<Departamento, Integer> implements IDepartamentoService{
     
-    @PersistenceContext(unitName="CursosUP")
-    EntityManager manager;
-    
-    public DepartamentoService() {
-        super();
-        this._em = manager;
-    }
+    @PersistenceContext(unitName = "CursosUP")
+    protected EntityManager manager;
 
     @Override
     public Departamento find(Integer id) {
-        return _em.find(Departamento.class, id);
+        return this.manager.find(Departamento.class, id);
     }
 
     @Override
-    public List<Departamento> listarDepartamentosPorFacultad(Facultad facultadSeleccionada) {
+    public List<Departamento> listarDepartamentosPorFacultad(int facultadSeleccionada) {
         return manager.createNamedQuery("Departamento.findByFacultadId")
-                .setParameter("facultadid", facultadSeleccionada.getFacultadId())
+                .setParameter("FacultadId", facultadSeleccionada)
                 .getResultList();
+    }
+
+    @Override
+    public Departamento ObtenerPorId(int id) {
+        return find(id);
     }
 }

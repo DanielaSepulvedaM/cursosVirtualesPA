@@ -1,6 +1,5 @@
 package co.edu.ucentral.cursos.service;
 
-
 import co.edu.ucentral.cursos.models.Curso;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -11,43 +10,39 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class CursoService extends DAO<Curso, Integer> implements ICursoService{
 
-   @PersistenceContext(unitName="CursosUP")
-    EntityManager manager;
-    
-    public CursoService() {
-        super();
-        this._em = manager;    
-    }
-
+       @PersistenceContext(unitName = "CursosUP")
+    protected EntityManager manager;
+  
+    //METODOS ABSTRACTO DE LA CLASE DAO SE HEREDO
     @Override
     public Curso find(Integer id) {
-        return manager.find(Curso.class, id);
+        return this.manager.find(Curso.class, id);
     }
 
+    //METODOS ABSTRACTOS IMPLEMENTADOSDE LA INTERFAZ ICursoService
     @Override
     public List<Curso> listarCursos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return manager.createNamedQuery("Curso.findAll")
+                      .getResultList();
     }
 
     @Override
     public Curso encontrarCursoPorId(int cursoId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return   (Curso) manager.createNamedQuery("Curso.findByCursoId").getSingleResult();
     }
 
     @Override
     public void guardarCurso(Curso curso) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.create(curso, manager);
     }
 
     @Override
     public void modificarCurso(Curso curso) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.update(curso, manager);
     }
 
     @Override
     public void eliminarCurso(Curso curso) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-   
+        this.delete(curso, manager);
+    } 
 }

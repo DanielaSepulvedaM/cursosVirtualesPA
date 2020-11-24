@@ -15,16 +15,16 @@
                 <a class="navbar-brand" style="color: white">#{msgs['plantilla.tituloPagina']}</a>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link" style="color: white">#{msgs['plantilla.link1']}</a>
-                        <a class="nav-link" style="color: white">#{msgs['plantilla.link2']}</a>
-                        <a class="nav-link" style="color: white">#{msgs['plantilla.link3']}</a>
-                        <a class="nav-link disabled" tabindex="-1" aria-disabled="true" style="color: white">#{msgs['plantilla.link4']}</a>
+                        <h:commandLink class="nav-link" style="color: white" action="index">#{msgs['plantilla.link1']}></h:commandLink>
+                        <h:commandLink class="nav-link" style="color: white" action="listadoCursos">#{msgs['plantilla.link2']}</h:commandLink>
+                        <h:commandLink class="nav-link" style="color: white" action="#">#{msgs['plantilla.link3']}</h:commandLink>
+                        <h:commandLink class="nav-link disabled" tabindex="-1" style="color: white" action="evaluacion">#{msgs['plantilla.link4']}</h:commandLink>
                     </div>
                 </div>
             </h:form>    
         </nav>
         
-        <div>
+        <div class="container my-2">
             <ui:insert name="content">Contenido</ui:insert>
         </div>
     </h:body>

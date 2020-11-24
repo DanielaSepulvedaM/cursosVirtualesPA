@@ -13,7 +13,7 @@ public class PreguntaService extends DAO<Pregunta, Integer> implements IPregunta
 
     @Override
     public Pregunta find(Integer id) {
-        return _em.find(Pregunta.class, id);
+        return null;// _em.find(Pregunta.class, id);
     }
 
 

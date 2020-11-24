@@ -4,20 +4,21 @@ import co.edu.ucentral.cursos.models.Curso;
 import co.edu.ucentral.cursos.models.Departamento;
 import co.edu.ucentral.cursos.models.Facultad;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import co.edu.ucentral.ventasapp.interfaz.ICursoService;
 import co.edu.ucentral.ventasapp.interfaz.IDepartamentoService;
 import co.edu.ucentral.ventasapp.interfaz.IFacultadService;
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.view.ViewScoped;
 
 
 
 @Named("cursoBean")
-@RequestScoped
-public class CursoBean {
+@ViewScoped
+public class CursoBean implements Serializable{
     
     @Inject
     private ICursoService cursoService;
@@ -28,8 +29,8 @@ public class CursoBean {
     @Inject
     private IDepartamentoService departamentoService;
     
-    private Facultad facultadSeleccionada;
-    private Departamento departamentoSeleccionado;
+    private int facultadSeleccionada;
+    private int departamentoSeleccionado;
     private List<Facultad>faculdesDisponibles;
     private List<Departamento> departamentoDisponibles;
     private Curso curso;
@@ -39,24 +40,39 @@ public class CursoBean {
     @PostConstruct
     public  void inicializar(){
        // CursoFachada.CrearCurso("Matematicas", "Curso de matematicas avanzada", Boolean.FALSE, Boolean.TRUE, 72);
-       //cursos = cursoService.listarCursos();
-       //curso = new Curso();
+       cursos = cursoService.listarCursos();
+       curso = new Curso();
        faculdesDisponibles = facultadService.listarFacultades();
+       
     }
     
     public void cambioFacultad(AjaxBehaviorEvent event){
         departamentoDisponibles = departamentoService.listarDepartamentosPorFacultad(facultadSeleccionada);
     }
-    
-    
-    
+   
     public String nuevoCurso(){
        this.curso=new Curso();
        return "nuevoCurso";
     }
    
+    public String guardarCurso(){
+        Departamento departamento = departamentoService.ObtenerPorId(departamentoSeleccionado);
+        curso.setDepartamento(departamento);
+        this.cursoService.guardarCurso(curso);
+        this.cursos.add(curso);
+        //this.curso=null;
+        return "listadoCursos";
+    }
     
+    public String editar(int CursoId){
+        curso = new Curso();
+        curso.setCursoId(CursoId);
+        curso=this.cursoService.encontrarCursoPorId(CursoId);
+        return "edicionCurso";
+    }
    
+    
+
 
    //****GET Y SET****
     public Curso getCurso() {
@@ -99,19 +115,19 @@ public class CursoBean {
         this.departamentoService = departamentoService;
     }
 
-    public Facultad getFacultadSeleccionada() {
+    public int getFacultadSeleccionada() {
         return facultadSeleccionada;
     }
 
-    public void setFacultadSeleccionada(Facultad facultadSeleccionada) {
+    public void setFacultadSeleccionada(int facultadSeleccionada) {
         this.facultadSeleccionada = facultadSeleccionada;
     }
 
-    public Departamento getDepartamentoSeleccionado() {
+    public int getDepartamentoSeleccionado() {
         return departamentoSeleccionado;
     }
 
-    public void setDepartamentoSeleccionado(Departamento departamentoSeleccionado) {
+    public void setDepartamentoSeleccionado(int departamentoSeleccionado) {
         this.departamentoSeleccionado = departamentoSeleccionado;
     }
 

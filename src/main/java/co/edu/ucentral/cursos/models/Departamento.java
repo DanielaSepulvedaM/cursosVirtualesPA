@@ -22,7 +22,7 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Departamento.findAll", query = "SELECT d FROM Departamento d"),
     @NamedQuery(name = "Departamento.findByDepartamentoId", query = "SELECT d FROM Departamento d WHERE d.departamentoId = :departamentoId"),
-    @NamedQuery(name = "Departamento.findByFacultadId", query = "SELECT d FROM Departamento d WHERE d.facultad = :FacultadId")})
+    @NamedQuery(name = "Departamento.findByFacultadId", query = "SELECT d FROM Departamento d WHERE d.facultad.facultadId = :FacultadId")})
 
 public class Departamento implements Serializable {
 
@@ -36,7 +36,7 @@ public class Departamento implements Serializable {
     @Size(max = 2147483647)
     @Column(name = "Nombre")
     private String nombre;
-    @OneToMany(mappedBy = "departamento")
+    @OneToMany(mappedBy = "Departamento")
     private List<Curso> cursoList;
     @JoinColumn(name = "FacultadId", referencedColumnName = "FacultadId")
     @ManyToOne(optional = false)

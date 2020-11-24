@@ -11,8 +11,9 @@ public class CursoInscritoService extends DAO<CursoInscrito, Integer> implements
     }
 
    
+    @Override
     public CursoInscrito find(Integer id) {
-        return _em.find(CursoInscrito.class, id);
+        return null;// _em.find(CursoInscrito.class, id);
     }
 
     

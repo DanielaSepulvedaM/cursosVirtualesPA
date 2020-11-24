@@ -13,7 +13,7 @@ public class EstudianteService extends DAO<Estudiante, Integer> implements IEstu
 
     @Override
     public Estudiante find(Integer id) {
-        return _em.find(Estudiante.class, id);
+        return null;// _em.find(Estudiante.class, id);
     }
 
     

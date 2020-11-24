@@ -23,27 +23,33 @@ import javax.validation.constraints.Size;
 public class Docente implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "DocenteId")
     private Integer docenteId;
+    
     @Lob
     @Size(max = 2147483647)
     @Column(name = "Correo")
     private String correo;
+    
     @Lob
     @Size(max = 2147483647)
     @Column(name = "Clave")
     private String clave;
+    
     @Lob
     @Size(max = 2147483647)
     @Column(name = "Nombre")
     private String nombre;
+    
     @Lob
     @Size(max = 2147483647)
     @Column(name = "Documento")
     private String documento;
+    
     @OneToMany(mappedBy = "docente")
     private List<Curso> cursoList;
 

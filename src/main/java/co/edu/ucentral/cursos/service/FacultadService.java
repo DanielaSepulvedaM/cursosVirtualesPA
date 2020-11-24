@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import co.edu.ucentral.ventasapp.interfaz.IFacultadService;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.PersistenceContext;
 
 @Stateless
@@ -14,15 +13,11 @@ public class FacultadService extends DAO<Facultad, Integer> implements IFacultad
     
    @PersistenceContext(unitName="CursosUP")
     EntityManager manager;
-    
-    public FacultadService() {
-        super();
-        this._em = manager;
-    }
+   
 
     @Override
     public Facultad find(Integer id) {
-        return _em.find(Facultad.class, id);
+        return this.manager.find(Facultad.class, id);
     }
 
     @Override

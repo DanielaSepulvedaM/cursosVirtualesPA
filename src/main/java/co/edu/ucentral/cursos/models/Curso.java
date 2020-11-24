@@ -30,43 +30,54 @@ import javax.validation.constraints.Size;
 public class Curso implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CursoId")
     private Integer cursoId;
+    
     @Lob
     @Size(max = 2147483647)
     @Column(name = "Nombre")
     private String nombre;
+    
     @Lob
     @Size(max = 2147483647)
     @Column(name = "Descripcion")
     private String descripcion;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "CursoPublicado")
     private boolean cursoPublicado;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "CursoSuspendido")
     private boolean cursoSuspendido;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "DuracionCurso")
     private int duracionCurso;
+    
     @JoinColumn(name = "DepartamentoId", referencedColumnName = "DepartamentoId")
     @ManyToOne
     private Departamento departamento;
+    
     @JoinColumn(name = "DocenteId", referencedColumnName = "DocenteId")
     @ManyToOne
     private Docente docente;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "curso")
     private List<Evaluacion> evaluacionList;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "curso")
     private List<CursoInscrito> cursoInscritoList;
 
     public Curso() {
+        this.cursoId = 0;
     }
 
     public Curso(Integer cursoId) {

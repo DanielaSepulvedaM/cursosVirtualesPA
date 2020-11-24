@@ -13,7 +13,7 @@ public class EvaluacionService extends DAO<Evaluacion, Integer> implements IEval
 
     @Override
     public Evaluacion find(Integer id) {
-        return _em.find(Evaluacion.class, id);
+        return null;// _em.find(Evaluacion.class, id);
     }
     
 }

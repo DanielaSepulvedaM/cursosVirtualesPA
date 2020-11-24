@@ -13,6 +13,6 @@ public class RespuestaService extends DAO<Respuesta, Integer> implements IRespue
 
     @Override
     public Respuesta find(Integer id) {
-        return _em.find(Respuesta.class, id);
+        return null;// _em.find(Respuesta.class, id);
     }    
 }

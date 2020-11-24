@@ -7,8 +7,8 @@ import javax.ejb.Local;
 
 @Local
 public interface IDepartamentoService {
-    public List<Departamento> listarDepartamentosPorFacultad(Facultad facultadSeleccionada);
-
+    public List<Departamento> listarDepartamentosPorFacultad(int facultadSeleccionada);
+    public Departamento ObtenerPorId(int id);
     
     
 }
