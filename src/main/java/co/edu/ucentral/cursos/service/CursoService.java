@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class CursoService extends DAO<Curso, Integer> implements ICursoService{
 
-       @PersistenceContext(unitName = "CursosUP")
+    @PersistenceContext(unitName = "CursosUP")
     protected EntityManager manager;
   
     //METODOS ABSTRACTO DE LA CLASE DAO SE HEREDO
@@ -27,11 +27,6 @@ public class CursoService extends DAO<Curso, Integer> implements ICursoService{
     }
 
     @Override
-    public Curso encontrarCursoPorId(int cursoId) {
-        return   (Curso) manager.createNamedQuery("Curso.findByCursoId").getSingleResult();
-    }
-
-    @Override
     public void guardarCurso(Curso curso) {
         this.create(curso, manager);
     }
@@ -45,4 +40,9 @@ public class CursoService extends DAO<Curso, Integer> implements ICursoService{
     public void eliminarCurso(Curso curso) {
         this.delete(curso, manager);
     } 
+
+    @Override
+    public Curso encontrarCursoPorId(int cursoid) {
+        return this.manager.find(Curso.class, cursoid);
+    }
 }

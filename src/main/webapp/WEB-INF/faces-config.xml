@@ -21,11 +21,20 @@
             <to-view-id>/pages/curso/nuevoCurso.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
     <navigation-rule id="3">
         <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>listadoCursos</from-outcome>
             <to-view-id>/pages/curso/listadoCursos.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule id="4">
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>edicionCurso</from-outcome>
+            <to-view-id>/pages/curso/edicionCurso.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     

@@ -28,13 +28,20 @@
                                     <f:facet name="header">Descripcion</f:facet>
                                     <h:outputText value="#{curso.descripcion}"></h:outputText>
                                 </h:column>
+                                
                                 <h:column>
+                                    <f:facet name="header">Tiempo(horas)</f:facet>
+                                    <h:outputText value="#{curso.duracionCurso}"></h:outputText>
+                                </h:column>
+                                
+                                <h:column>
+                                    <f:facet name="header">Docente</f:facet>
+                                    <h:outputText value="#{curso.docente.nombre}"></h:outputText>
+                                </h:column>
+
+                                 <h:column>
                                     <f:facet name="header">Curso Publicado</f:facet>
                                     <h:outputText value="#{curso.cursoPublicado}"></h:outputText>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">Duracion del Curso</f:facet>
-                                    <h:outputText value="#{curso.duracionCurso}"></h:outputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">Departamento</f:facet>
@@ -42,10 +49,8 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">Editar</f:facet>
-                                    <h:commandButton  value="Editar" class="btn btn-secondary btn-sm" style="background:#3176B1"></h:commandButton>
+                                    <h:commandButton action="#{cursoBean.editar(curso.cursoId)}"  value="Editar" class="btn btn-secondary btn-sm" style="background:#3176B1"></h:commandButton>
                                 </h:column>
-                                
-
                             </h:dataTable>
                         </h:form>
                     </div>

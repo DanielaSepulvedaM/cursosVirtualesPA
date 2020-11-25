@@ -7,7 +7,7 @@ import javax.ejb.Local;
 @Local
 public interface ICursoService {
     public List<Curso> listarCursos();
-    public Curso encontrarCursoPorId(int cursoId);
+    public Curso encontrarCursoPorId(int cursoid);
     public void guardarCurso(Curso curso);
     public void modificarCurso(Curso curso);
     public void eliminarCurso(Curso curso);

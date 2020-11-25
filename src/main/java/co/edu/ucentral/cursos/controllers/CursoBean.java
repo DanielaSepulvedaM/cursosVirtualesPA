@@ -2,22 +2,25 @@ package co.edu.ucentral.cursos.controllers;
 
 import co.edu.ucentral.cursos.models.Curso;
 import co.edu.ucentral.cursos.models.Departamento;
+import co.edu.ucentral.cursos.models.Docente;
 import co.edu.ucentral.cursos.models.Facultad;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 import co.edu.ucentral.ventasapp.interfaz.ICursoService;
 import co.edu.ucentral.ventasapp.interfaz.IDepartamentoService;
+import co.edu.ucentral.ventasapp.interfaz.IDocenteService;
 import co.edu.ucentral.ventasapp.interfaz.IFacultadService;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.event.AjaxBehaviorEvent;
-import javax.faces.view.ViewScoped;
+
 
 
 
 @Named("cursoBean")
-@ViewScoped
+@SessionScoped
 public class CursoBean implements Serializable{
     
     @Inject
@@ -29,10 +32,16 @@ public class CursoBean implements Serializable{
     @Inject
     private IDepartamentoService departamentoService;
     
+    @Inject
+    private IDocenteService docenteService;
+    
+    
     private int facultadSeleccionada;
     private int departamentoSeleccionado;
+    private int docenteSeleccionado;
     private List<Facultad>faculdesDisponibles;
     private List<Departamento> departamentoDisponibles;
+    private List<Docente> docentesDisponibles;
     private Curso curso;
     private List<Curso>cursos;
      
@@ -41,8 +50,14 @@ public class CursoBean implements Serializable{
     public  void inicializar(){
        // CursoFachada.CrearCurso("Matematicas", "Curso de matematicas avanzada", Boolean.FALSE, Boolean.TRUE, 72);
        cursos = cursoService.listarCursos();
-       curso = new Curso();
+       
+       if(curso == null)
+            curso = new Curso();
+       
        faculdesDisponibles = facultadService.listarFacultades();
+       docentesDisponibles = docenteService.listarDocentes();
+               
+               
        
     }
     
@@ -57,6 +72,8 @@ public class CursoBean implements Serializable{
    
     public String guardarCurso(){
         Departamento departamento = departamentoService.ObtenerPorId(departamentoSeleccionado);
+        Docente docente = docenteService.ObtenerPorId(docenteSeleccionado);
+        curso.setDocente(docente);
         curso.setDepartamento(departamento);
         this.cursoService.guardarCurso(curso);
         this.cursos.add(curso);
@@ -65,13 +82,15 @@ public class CursoBean implements Serializable{
     }
     
     public String editar(int CursoId){
-        curso = new Curso();
-        curso.setCursoId(CursoId);
         curso=this.cursoService.encontrarCursoPorId(CursoId);
         return "edicionCurso";
     }
    
-    
+    public String modificarCurso(){
+        this.cursoService.modificarCurso(curso);
+        cursos=cursoService.listarCursos();
+        return "listadoCursos";    
+    }
 
 
    //****GET Y SET****
@@ -147,6 +166,19 @@ public class CursoBean implements Serializable{
         this.departamentoDisponibles = departamentoDisponibles;
     }
 
-    
-   
+    public int getDocenteSeleccionado() {
+        return docenteSeleccionado;
+    }
+
+    public void setDocenteSeleccionado(int docenteSeleccionado) {
+        this.docenteSeleccionado = docenteSeleccionado;
+    }
+
+    public List<Docente> getDocentesDisponibles() {
+        return docentesDisponibles;
+    }
+
+    public void setDocentesDisponibles(List<Docente> docentesDisponibles) {
+        this.docentesDisponibles = docentesDisponibles;
+    }
 }
