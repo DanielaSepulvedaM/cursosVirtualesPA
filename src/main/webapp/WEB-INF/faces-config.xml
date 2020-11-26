@@ -38,6 +38,22 @@
         </navigation-case>
     </navigation-rule>
     
+    <navigation-rule id="5">
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>editarEvaluacion</from-outcome>
+            <to-view-id>/pages/evaluacion/editarEvaluacion.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule id="6">
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>nuevaEvaluacion</from-outcome>
+            <to-view-id>/pages/evaluacion/nuevaEvaluacion.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
     
     <application>
          <locale-config>

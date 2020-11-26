@@ -171,6 +171,7 @@ public class Curso implements Serializable {
         this.cursoInscritoList = cursoInscritoList;
     }
 
+    
     @Override
     public int hashCode() {
         int hash = 0;

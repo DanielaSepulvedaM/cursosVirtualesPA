@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      >
+    <h:head>
+        <title>Evaluacion</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../../WEB-INF/plantillas/plantilla.xhtml">
+            <ui:define name="content">
+                <div class="container my-5">
+                    <form>
+                         <h4 class="text-center my-4">Evaluacion</h4>
+                        <div class="row my-4 mx-2">
+                            <div class="col-2">Nombre de la Evaluacion</div>
+                            <div class="col-8">
+                                <input class="form-control col" id="nombre"/>
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary my-2">Guardar</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                   
+                    <h4 class="text-center my-2">Preguntas</h4>
+                    <div class="row my-5">
+                        <div class="col-6">
+                            <div class="card mx-2 my-4" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h6 class="card-title">Pregunta 1</h6>
+                                    <p class="card-text">¿Esta es la primer pregunta?</p>
+                                </div>
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item list-group-item-action">Opcion de Respuesta 1</a>
+                                    <a href="#" class="list-group-item list-group-item-action">Opcion de Respuesta 2</a>
+                                    <a href="#" class="list-group-item list-group-item-action">Opcion de Respuesta 3</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                Adicionar Item
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Agregar Item Factura</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6>Hola</h6> 
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

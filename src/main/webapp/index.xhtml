@@ -14,6 +14,21 @@
                     <h:commandButton value="Lista de Cursos" action="listadoCursos"></h:commandButton>
                 </h:form>
             </ui:define>
+            <ui:define name="content">
+                <div class="row">
+                    <ui:repeat value="#{cursoBean.cursos}" var="curso">
+                        <div class="col-3">
+                            <div class="card border-secondary mb-3" style="max-width: 18rem;">
+                                <div class="card-header">#{curso.nombre}</div>
+                                <div class="card-body text-secondary">
+                                    <h6 class="card-title ">Descripcion del Curso</h6>
+                                    <p class="card-text">#{curso.descripcion}</p>
+                                </div>
+                            </div>  
+                        </div>
+                    </ui:repeat>
+                </div>
+            </ui:define>
         </ui:composition>
 
     </h:body>

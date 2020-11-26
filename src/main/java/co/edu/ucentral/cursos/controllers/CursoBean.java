@@ -56,9 +56,6 @@ public class CursoBean implements Serializable{
        
        faculdesDisponibles = facultadService.listarFacultades();
        docentesDisponibles = docenteService.listarDocentes();
-               
-               
-       
     }
     
     public void cambioFacultad(AjaxBehaviorEvent event){
@@ -83,10 +80,20 @@ public class CursoBean implements Serializable{
     
     public String editar(int CursoId){
         curso=this.cursoService.encontrarCursoPorId(CursoId);
+        facultadSeleccionada = curso.getDepartamento().getFacultad().getFacultadId();
+        departamentoSeleccionado = curso.getDepartamento().getDepartamentoId();
+        docenteSeleccionado = curso.getDocente().getDocenteId();
+        
+        if(departamentoDisponibles == null)
+        departamentoDisponibles = departamentoService.listarDepartamentosPorFacultad(facultadSeleccionada);
+        
         return "edicionCurso";
     }
    
     public String modificarCurso(){
+      
+        Docente doc = docenteService.ObtenerPorId(docenteSeleccionado);
+        curso.setDocente(doc);
         this.cursoService.modificarCurso(curso);
         cursos=cursoService.listarCursos();
         return "listadoCursos";    
@@ -181,4 +188,6 @@ public class CursoBean implements Serializable{
     public void setDocentesDisponibles(List<Docente> docentesDisponibles) {
         this.docentesDisponibles = docentesDisponibles;
     }
+    
+    
 }
