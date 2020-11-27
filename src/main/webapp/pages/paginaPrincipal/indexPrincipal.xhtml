@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>SISTEMA DE CURSOS</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./WEB-INF/plantillas/plantilla.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <h:commandButton value="Lista de Cursos" action="listadoCursos"></h:commandButton>
+                </h:form>
+            </ui:define>
+            <ui:define name="content">
+                <h2 class="text-center my-5"> Cursos Disponibles</h2>
+                <div class="row">
+                    <ui:repeat value="#{cursoBean.cursos}" var="curso">
+                        <div class="col-3">
+                            <div class="card  mb-3" style="max-width: 18rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+                                <div class="card-header" style="background: rgba(209, 107, 218,0.29);color: black" >#{curso.nombre}</div>
+                                <div class="card-body text-secondary">
+                                    <h6 class="card-title ">Descripcion del Curso</h6>
+                                    <p class="card-text">#{curso.descripcion}</p>
+                                </div>
+                            </div>  
+                        </div>
+                    </ui:repeat>
+                </div>
+            </ui:define>
+        </ui:composition>
+
+    </h:body>
+</html>

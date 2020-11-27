@@ -10,25 +10,35 @@
     <h:body>
         <ui:composition template="./WEB-INF/plantillas/plantilla.xhtml">
             <ui:define name="content">
+                
                 <h:form>
                     <h:commandButton value="Lista de Cursos" action="listadoCursos"></h:commandButton>
                 </h:form>
-            </ui:define>
-            <ui:define name="content">
-                <h2 class="text-center my-5"> Cursos Disponibles</h2>
-                <div class="row">
-                    <ui:repeat value="#{cursoBean.cursos}" var="curso">
-                        <div class="col-3">
-                            <div class="card  mb-3" style="max-width: 18rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
-                                <div class="card-header" style="background: rgba(209, 107, 218,0.29);color: black" >#{curso.nombre}</div>
-                                <div class="card-body text-secondary">
-                                    <h6 class="card-title ">Descripcion del Curso</h6>
-                                    <p class="card-text">#{curso.descripcion}</p>
-                                </div>
-                            </div>  
+                
+                <h:form class="container border solid my-5" style="max-width: 30rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); background:rgba(193, 153, 197,0.29)">
+                    <h5 class="font-weight-lighter text-center pt-3">Formulario de Ingreso</h5>
+                    <div class="my-4">
+                        <div class="form-group row">
+                            <label for="usuario" class="col-sm-2 col-form-label font-weight-lighter">Usuario</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" id="usuario"/>
+                            </div>
                         </div>
-                    </ui:repeat>
-                </div>
+                        <div class="form-group row">
+                            <label for="clave" class="col-sm-2 col-form-label font-weight-lighter">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="clave"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-outline-primary btn-lg btn-block btn-sm" >Ingresar</button>
+                        </div>
+                    </div>
+                </h:form>
+                
             </ui:define>
         </ui:composition>
 
