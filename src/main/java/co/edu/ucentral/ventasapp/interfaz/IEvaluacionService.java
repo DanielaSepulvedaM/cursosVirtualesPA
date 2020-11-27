@@ -7,5 +7,11 @@ import javax.ejb.Local;
 public interface IEvaluacionService {
 
     public Evaluacion ObtenerPorId(int evaluacionId);
+
+    public Evaluacion CrearEvaluacion(Evaluacion evaluacionActual);
+
+    public Evaluacion ActualizarEvaluacion(Evaluacion evaluacionActual);
+    
+    public Evaluacion ObtenerEvaluacionCurso(int cursoId);
     
 }

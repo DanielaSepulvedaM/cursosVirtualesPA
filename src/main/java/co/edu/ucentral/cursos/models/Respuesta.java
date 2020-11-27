@@ -25,19 +25,23 @@ import javax.validation.constraints.Size;
 public class Respuesta implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "RespuestaId")
     private Integer respuestaId;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "RespuestaCorrecta")
     private boolean respuestaCorrecta;
+    
     @Lob
     @Size(max = 2147483647)
     @Column(name = "TextoRespuesta")
     private String textoRespuesta;
+    
     @JoinColumn(name = "PreguntaId", referencedColumnName = "PreguntaId")
     @ManyToOne(optional = false)
     private Pregunta pregunta;

@@ -5,8 +5,10 @@
  */
 package co.edu.ucentral.cursos.controllers;
 
+import co.edu.ucentral.cursos.models.Curso;
 import co.edu.ucentral.cursos.models.Evaluacion;
 import co.edu.ucentral.cursos.models.Pregunta;
+import co.edu.ucentral.ventasapp.interfaz.ICursoService;
 import co.edu.ucentral.ventasapp.interfaz.IEvaluacionService;
 import java.io.Serializable;
 import java.util.List;
@@ -24,19 +26,27 @@ public class EvaluacionBean implements Serializable {
     
     Evaluacion evaluacionActual;
     
+    int CursoId;
+    
     @Inject
     IEvaluacionService evaluacionSvc;
     
-     private List<Pregunta>preguntas;
+    @Inject
+    ICursoService cursoService;
     
-    public String cargarEvaluacion(int evaluacionId){
-        this.evaluacionActual = this.evaluacionSvc.ObtenerPorId(evaluacionId);
+    
+    public String cargarEvaluacion(int cursoId){
+        this.evaluacionActual = this.evaluacionSvc.ObtenerEvaluacionCurso(cursoId);
+        if(this.evaluacionActual == null)
+            this.evaluacionActual = new Evaluacion();
+            
         return "editarEvaluacion";
     }
     
     public String nuevaEvaluacion(int cursoid){
         this.evaluacionActual = new Evaluacion();
-        return "nuevaEvaluacion";
+        this.CursoId = cursoid;
+        return "editarEvaluacion";
     }
     
     //GET SET
@@ -48,13 +58,26 @@ public class EvaluacionBean implements Serializable {
     public void setEvaluacionActual(Evaluacion evaluacionActual) {
         this.evaluacionActual = evaluacionActual;
     }
-
-    public List<Pregunta> getPreguntas() {
-        return preguntas;
+    
+    public String guardarEvaluacion(){
+        if(evaluacionActual.getEvaluacionId() == null)
+        {
+            Curso curso = this.cursoService.encontrarCursoPorId(CursoId);
+            this.evaluacionActual.setCurso(curso);
+            this.evaluacionActual = this.evaluacionSvc.CrearEvaluacion(evaluacionActual);
+        }
+        else
+            this.evaluacionActual = this.evaluacionSvc.ActualizarEvaluacion(evaluacionActual);
+        
+        return "editarEvaluacion";
     }
-
-    public void setPreguntas(List<Pregunta> preguntas) {
-        this.preguntas = preguntas;
+    
+    public void agregarPregunta(){
+    
+    }
+    
+    public void eliminarPregunta(){
+    
     }
     
     

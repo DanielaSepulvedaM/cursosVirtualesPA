@@ -30,25 +30,31 @@ import javax.validation.constraints.NotNull;
 public class CursoInscrito implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CursoInscritoId")
     private Integer cursoInscritoId;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "FechaInscripcion")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaInscripcion;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "CursoInscritoCalificado")
     private boolean cursoInscritoCalificado;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cursoInscrito")
     private List<EvaluacionRealizada> evaluacionRealizadaList;
+    
     @JoinColumn(name = "CursoId", referencedColumnName = "CursoId")
     @ManyToOne(optional = false)
     private Curso curso;
+    
     @JoinColumn(name = "EstudianteId", referencedColumnName = "EstudianteId")
     @ManyToOne(optional = false)
     private Estudiante estudiante;

@@ -26,17 +26,21 @@ import javax.validation.constraints.Size;
 public class Pregunta implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "PreguntaId")
     private Integer preguntaId;
+    
     @Lob
     @Size(max = 2147483647)
     @Column(name = "TextoPregunta")
     private String textoPregunta;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pregunta")
     private List<Respuesta> respuestaList;
+    
     @JoinColumn(name = "EvaluacionId", referencedColumnName = "EvaluacionId")
     @ManyToOne(optional = false)
     private Evaluacion evaluacion;

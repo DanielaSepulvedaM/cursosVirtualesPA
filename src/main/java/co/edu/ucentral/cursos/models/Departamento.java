@@ -27,17 +27,21 @@ import javax.validation.constraints.Size;
 public class Departamento implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "DepartamentoId")
     private Integer departamentoId;
+    
     @Lob
     @Size(max = 2147483647)
     @Column(name = "Nombre")
     private String nombre;
+    
     @OneToMany(mappedBy = "Departamento")
     private List<Curso> cursoList;
+    
     @JoinColumn(name = "FacultadId", referencedColumnName = "FacultadId")
     @ManyToOne(optional = false)
     private Facultad facultad;

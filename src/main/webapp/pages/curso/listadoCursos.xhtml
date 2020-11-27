@@ -11,7 +11,7 @@
     <h:body>
         <ui:composition template="../../WEB-INF/plantillas/plantilla.xhtml">
             <ui:define name="content">
-                <div class="card border-primary mb-3">
+                <div class="card  mb-3" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
                     <div class="card-header text-muted">Listado de Cursos</div>
                     <div class="card-body text-primary">
                         <h:form>
@@ -54,12 +54,7 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">Evaluacion</f:facet>
-                                    <c:if test="#{curso.evaluacionList == null}">
-                                        <h:commandButton action="#{evaluacionBean.nuevaEvaluacion(curso.cursoId)}" value="Agregar" class="btn btn-secondary btn-sm"></h:commandButton>
-                                    </c:if>
-                                    <c:if test="#{curso.evaluacionList != null}">
-                                        <h:commandButton action="#{evaluacionBean.cargarEvaluacion(curso.cursoId)}" value="Editar" class="btn btn-secondary btn-sm"></h:commandButton>
-                                    </c:if>
+                                    <h:commandButton action="#{evaluacionBean.cargarEvaluacion(curso.cursoId)}" value="Evaluacion" class="btn btn-secondary btn-sm"></h:commandButton>
                                 </h:column>
                             </h:dataTable>
                         </h:form>

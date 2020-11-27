@@ -22,24 +22,31 @@ import javax.validation.constraints.Size;
 @Table(name = "evaluacions")
 @NamedQueries({
     @NamedQuery(name = "Evaluacion.findAll", query = "SELECT e FROM Evaluacion e"),
-    @NamedQuery(name = "Evaluacion.findByEvaluacionId", query = "SELECT e FROM Evaluacion e WHERE e.evaluacionId = :evaluacionId")})
+    @NamedQuery(name = "Evaluacion.findByEvaluacionId", query = "SELECT e FROM Evaluacion e WHERE e.evaluacionId = :evaluacionId"),
+    @NamedQuery(name = "Evaluacion.findByCursoId", query = "SELECT e FROM Evaluacion e WHERE e.curso.cursoId = :cursoId ORDER BY e.evaluacionId DESC")
+})
 public class Evaluacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "EvaluacionId")
     private Integer evaluacionId;
+    
     @Lob
     @Size(max = 2147483647)
     @Column(name = "Nombre")
     private String nombre;
+    
     @JoinColumn(name = "CursoId", referencedColumnName = "CursoId")
     @ManyToOne(optional = false)
     private Curso curso;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evaluacion")
     private List<EvaluacionRealizada> evaluacionRealizadaList;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evaluacion")
     private List<Pregunta> preguntaList;
 

@@ -24,15 +24,18 @@ import javax.validation.constraints.Size;
 public class Facultad implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "FacultadId")
     private Integer facultadId;
+    
     @Lob
     @Size(max = 2147483647)
     @Column(name = "Nombre")
     private String nombre;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "facultad")
     private List<Departamento> departamentoList;
 

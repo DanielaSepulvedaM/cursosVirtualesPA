@@ -23,18 +23,22 @@ import javax.validation.constraints.NotNull;
 public class EvaluacionRealizada implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "EvaluacionRealizadaId")
     private Integer evaluacionRealizadaId;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "Nota")
     private double nota;
+    
     @JoinColumn(name = "CursoInscritoId", referencedColumnName = "CursoInscritoId")
     @ManyToOne(optional = false)
     private CursoInscrito cursoInscrito;
+    
     @JoinColumn(name = "EvaluacionId", referencedColumnName = "EvaluacionId")
     @ManyToOne(optional = false)
     private Evaluacion evaluacion;
