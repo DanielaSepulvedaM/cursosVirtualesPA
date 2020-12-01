@@ -23,7 +23,7 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Evaluacion.findAll", query = "SELECT e FROM Evaluacion e"),
     @NamedQuery(name = "Evaluacion.findByEvaluacionId", query = "SELECT e FROM Evaluacion e WHERE e.evaluacionId = :evaluacionId"),
-    @NamedQuery(name = "Evaluacion.findByCursoId", query = "SELECT e FROM Evaluacion e WHERE e.curso.cursoId = :cursoId ORDER BY e.evaluacionId DESC")
+    @NamedQuery(name = "Evaluacion.findByCursoId", query = "SELECT e FROM Evaluacion e JOIN FETCH e.preguntaList p JOIN FETCH P.respuestaList r WHERE e.curso.cursoId = :cursoId ORDER BY e.evaluacionId DESC")
 })
 public class Evaluacion implements Serializable {
 

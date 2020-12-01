@@ -115,4 +115,11 @@ public class Respuesta implements Serializable {
         return "co.edu.ucentral.cursos.models.Respuesta[ respuestaId=" + respuestaId + " ]";
     }
     
+    public static Respuesta nuevaRespuesta(Pregunta p){
+        Respuesta r = new Respuesta();
+        r.textoRespuesta = "";
+        r.setPregunta(p);
+        return r;
+    }
+    
 }
