@@ -6,6 +6,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Evaluacion.findAll", query = "SELECT e FROM Evaluacion e"),
     @NamedQuery(name = "Evaluacion.findByEvaluacionId", query = "SELECT e FROM Evaluacion e WHERE e.evaluacionId = :evaluacionId"),
-    @NamedQuery(name = "Evaluacion.findByCursoId", query = "SELECT e FROM Evaluacion e JOIN FETCH e.preguntaList p JOIN FETCH P.respuestaList r WHERE e.curso.cursoId = :cursoId ORDER BY e.evaluacionId DESC")
+    @NamedQuery(name = "Evaluacion.findByCursoId", query = "SELECT e FROM Evaluacion e WHERE e.curso.cursoId = :cursoId ORDER BY e.evaluacionId DESC")
 })
 public class Evaluacion implements Serializable {
 
@@ -47,7 +48,7 @@ public class Evaluacion implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evaluacion")
     private List<EvaluacionRealizada> evaluacionRealizadaList;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "evaluacion")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "evaluacion", fetch = FetchType.EAGER)
     private List<Pregunta> preguntaList;
 
     public Evaluacion() {

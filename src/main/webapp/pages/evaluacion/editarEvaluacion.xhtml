@@ -37,23 +37,27 @@ and open the template in the editor.
                             Agregar pregunta
                         </button>
                         <div class="row my-5">
-                            <div class="col-6">
-                                <ui:repeat value="#{evaluacionBean.evaluacionActual.preguntaList}" var="pregunta">
-                                    <div class="card mx-2 my-4" style="width: 18rem;">
+                            <ui:repeat value="#{evaluacionBean.evaluacionActual.preguntaList}" var="pregunta">
+                                <div class="col-4">
+                                    <div class="card my-4" style="width: 18rem;">
                                         <div class="card-body">
-
                                             <p class="card-text"><h:outputText value="#{pregunta.textoPregunta}" /></p>
-                                        </div>
-                                        <div class="list-group">
-                                            <ui:repeat value="#{pregunta.respuestaList}" var="respuesta">
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <h:outputText value="#{respuesta.textoRespuesta}" />
-                                                </a>
-                                            </ui:repeat>
+                                            <table class="table table-condensed">
+                                                <ui:repeat value="#{pregunta.respuestaList}" var="respuesta">
+                                                    <tr>
+                                                        <td>
+                                                            <h:selectBooleanCheckbox value="#{respuesta.respuestaCorrecta}" disabled="true"/>
+                                                        </td>
+                                                        <td>
+                                                            <h:outputText value="#{respuesta.textoRespuesta}" />
+                                                        </td>
+                                                    </tr>
+                                                </ui:repeat>
+                                            </table>
                                         </div>
                                     </div>
-                                </ui:repeat>
-                            </div>    
+                                </div>    
+                            </ui:repeat>
                         </div>
                     </c:if>
                 </div>
@@ -71,11 +75,10 @@ and open the template in the editor.
                                     <h4>Respuetas</h4>
                                     <ui:repeat value="#{evaluacionBean.preguntaActual.respuestaList}" var="respuesta">
                                         <div class="form-row">
-                                            <div class="col-md-1 mb-3 ">
-                                                <input jsf:id="respuesta" 
-                                                       a:checked="#{respuesta.respuestaCorrecta ? 'checked' : null}" 
-                                                       class="form-input" type="radio" 
-                                                       a:name="#{evaluacionBean.preguntaActual.preguntaId}"/>
+                                            <div class="col-md-1">
+                                                <div class="form-check mb-3">
+                                                    <h:selectBooleanCheckbox value="#{respuesta.respuestaCorrecta}" class="form-check-input"/>
+                                                </div>
                                             </div>
                                             <div class="col-md-11 mb-3">
                                                 <h:inputText value="#{respuesta.textoRespuesta}" class="form-control sm"></h:inputText>

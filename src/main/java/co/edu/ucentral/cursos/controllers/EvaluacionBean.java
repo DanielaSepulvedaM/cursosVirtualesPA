@@ -55,6 +55,7 @@ public class EvaluacionBean implements Serializable {
     }
     
     public String cargarEvaluacion(int cursoId){
+        this.CursoId = cursoId;
         this.evaluacionActual = this.evaluacionSvc.ObtenerEvaluacionCurso(cursoId);
         if(this.evaluacionActual == null)
             this.evaluacionActual = new Evaluacion();
@@ -87,8 +88,8 @@ public class EvaluacionBean implements Serializable {
     
     public String agregarPregunta(){
         this.preguntaActual.setEvaluacion(evaluacionActual);
-        this.preguntaService.CrearPregunta(preguntaActual);
-        return "editarEvaluacion";
+        this.preguntaActual = this.preguntaService.CrearPregunta(preguntaActual);
+        return cargarEvaluacion(CursoId);
     }
     
     public void eliminarPregunta(){
