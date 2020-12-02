@@ -10,24 +10,23 @@
     <h:body>
         <ui:composition template="../../WEB-INF/plantillas/plantillaLogin.xhtml">
             <ui:define name="content">
-
-            </ui:define>
-            <ui:define name="content">
                 <h2 class="text-center my-5">#{msgs['indexPrincipal.tituloPagina']}</h2>
-                <div class="row">
-                    <ui:repeat value="#{cursoBean.cursos}" var="curso">
-                        <div class="col-3">
-                            <div class="card  mb-3" style="max-width: 18rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
-                                <div class="card-header" style="background: rgba(209, 107, 218,0.29);color: black" >#{curso.nombre}</div>
-                                <div class="card-body text-secondary">
-                                    <h6 class="card-title ">#{msgs['indexPrincipal.tituloPagina']}</h6>
-                                    <p class="card-text">#{curso.descripcion}</p>
-                                    <h:commandButton action="#{cursoInscritoBean.inscribirCurso(idCurso)}" value="#{msgs['indexPrincipal.botonInscribir']}" class="btn btn-outline-primary btn-lg btn-block btn-sm"/>
-                                </div>
-                            </div>  
-                        </div>
-                    </ui:repeat>
-                </div>
+                <h:form>
+                    <div class="row">
+                        <ui:repeat value="#{cursoBean.cursos}" var="curso">
+                            <div class="col-3">
+                                <div class="card  mb-3" style="max-width: 18rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+                                    <div class="card-header" style="background: rgba(209, 107, 218,0.29);color: black" >#{curso.nombre}</div>
+                                    <div class="card-body text-secondary">
+                                        <h6 class="card-title ">#{msgs['indexPrincipal.tituloPagina']}</h6>
+                                        <p class="card-text">#{curso.descripcion}</p>
+                                        <h:commandButton  action="#{cursoInscritoBean.inscribirCurso(curso.cursoId)}" value="#{msgs['indexPrincipal.botonInscribir']}" class="btn btn-outline-primary btn-lg btn-block btn-sm"/>
+                                    </div>
+                                </div>  
+                            </div>
+                        </ui:repeat>
+                    </div>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

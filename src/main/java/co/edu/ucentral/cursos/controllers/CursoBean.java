@@ -16,9 +16,6 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 
-
-
-
 @Named("cursoBean")
 @SessionScoped
 public class CursoBean implements Serializable{
@@ -33,8 +30,7 @@ public class CursoBean implements Serializable{
     private IDepartamentoService departamentoService;
     
     @Inject
-    private IDocenteService docenteService;
-    
+    private IDocenteService docenteService; 
     
     private int facultadSeleccionada;
     private int departamentoSeleccionado;

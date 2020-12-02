@@ -9,7 +9,6 @@ import co.edu.ucentral.ventasapp.interfaz.IEstudianteService;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Map;
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;

@@ -35,16 +35,15 @@ public class LoginBean implements Serializable {
         if(docente != null){
             if(docente.getClave().equals(this.password)){
                 {
-                    ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-                    Map<String, Object> sessionMap = externalContext.getSessionMap();
-                    sessionMap.put("estudiante", estudiante);
-
                     return "listadoCursos";
                 }
             }
         }
         else if(estudiante != null){    
             if(estudiante.getClave().equals(this.password)){
+                ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+                Map<String, Object> sessionMap = externalContext.getSessionMap();
+                sessionMap.put("estudiante", estudiante);
                 return "indexPrincipal";
             }
         }
