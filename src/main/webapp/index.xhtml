@@ -10,37 +10,32 @@
     <h:body>
         <ui:composition template="./WEB-INF/plantillas/plantilla.xhtml">
             <ui:define name="content">
-                
-                <h:form>
-                    <h:commandButton value="Lista de Cursos" action="listadoCursos"></h:commandButton>
-                </h:form>
-                
-                <h:form class="container border solid my-5" style="max-width: 30rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); background:rgba(193, 153, 197,0.29)">
-                    <h5 class="font-weight-lighter text-center pt-3">Formulario de Ingreso</h5>
+                <h:form id="loginForm" class="container border solid my-5" style="max-width: 30rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); background:rgba(193, 153, 197,0.29)">
+                    <h5 class="font-weight-lighter text-center pt-3">#{msgs['index.tituloh5']}</h5>
                     <div class="my-4">
                         <div class="form-group row">
-                            <label for="usuario" class="col-sm-2 col-form-label font-weight-lighter">Usuario</label>
+                            <label for="usuario" class="col-sm-2 col-form-label font-weight-lighter">#{msgs['index.labelUsuario']}</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="usuario"/>
+                                <h:inputText id="usuario" required="true" value="#{loginBean.correo}" class="form-control" />                            
+                                <h:message for="usuario" class="form-control alert alert-danger mt-2"></h:message>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="clave" class="col-sm-2 col-form-label font-weight-lighter">Password</label>
+                            <label for="password" class="col-sm-2 col-form-label font-weight-lighter">#{msgs['index.labelPassword']}</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" id="clave"/>
+                                <h:inputSecret id="password" required="true"  value="#{loginBean.password}" class="form-control" />                   
+                                <h:message for="password" class="form-control alert alert-danger mt-2"></h:message>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <h:commandButton action="#{loginCtrl.Acceso()}" value="Ingresar" class="btn btn-outline-primary btn-lg btn-block btn-sm"/>
+                            <h:commandButton action="#{loginBean.acceso()}" value="#{msgs['index.commandButtonIngresar']}" class="btn btn-outline-primary btn-lg btn-block btn-sm"/>
                         </div>
                     </div>
-                </h:form>
-                
+                </h:form>     
             </ui:define>
         </ui:composition>
-
     </h:body>
 </html>

@@ -26,7 +26,10 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name = "CursoInscrito.findAll", query = "SELECT c FROM CursoInscrito c"),
     @NamedQuery(name = "CursoInscrito.findByCursoInscritoId", query = "SELECT c FROM CursoInscrito c WHERE c.cursoInscritoId = :cursoInscritoId"),
     @NamedQuery(name = "CursoInscrito.findByFechaInscripcion", query = "SELECT c FROM CursoInscrito c WHERE c.fechaInscripcion = :fechaInscripcion"),
-    @NamedQuery(name = "CursoInscrito.findByCursoInscritoCalificado", query = "SELECT c FROM CursoInscrito c WHERE c.cursoInscritoCalificado = :cursoInscritoCalificado")})
+    @NamedQuery(name = "CursoInscrito.findByCursoInscritoCalificado", query = "SELECT c FROM CursoInscrito c WHERE c.cursoInscritoCalificado = :cursoInscritoCalificado"),
+    @NamedQuery(name = "CursoInscrito.findByEstudianteId", query = "SELECT c FROM CursoInscrito c WHERE c.estudiante.estudianteId = :idEstudiante")
+})
+
 public class CursoInscrito implements Serializable {
 
     private static final long serialVersionUID = 1L;

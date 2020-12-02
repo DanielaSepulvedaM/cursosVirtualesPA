@@ -5,6 +5,7 @@ import co.edu.ucentral.ventasapp.interfaz.IDocenteService;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 @Stateless
@@ -26,6 +27,15 @@ public class DocenteService extends DAO<Docente, Integer> implements IDocenteSer
     @Override
     public Docente ObtenerPorId(int id) {
         return find(id);
+    }
+
+    @Override
+    public Docente ObtenerPorLogin(String correo) {
+        try {
+            return (Docente) manager.createNamedQuery("Docente.findByCorreo").setParameter("correo", correo).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
     
 }

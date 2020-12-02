@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -20,21 +15,22 @@ and open the template in the editor.
             <ui:define name="content">
                 <div class="container my-5">
                     <h:form>
-                        <h4 class="text-center my-4">Evaluacion</h4>
+                        <h4 class="text-center my-4">#{msgs['editarEvaluacion.tituloPagina']}</h4>
                         <div class="row my-4 mx-2">
-                            <div class="col-2">Nombre de la Evaluacion</div>
+                            <div class="col-2">#{msgs['editarEvaluacion.nombreEvaluacion']}</div>
                             <div class="col-8">
-                                <h:inputText value="#{evaluacionBean.evaluacionActual.nombre}" class="form-control col"></h:inputText>
+                                <h:inputText id="nombre" value="#{evaluacionBean.evaluacionActual.nombre}" class="form-control col"></h:inputText>
+                                <h:message for="nombre" class="form-control alert alert-danger mt-2"></h:message>
                             </div>
                             <div class="col">
-                                <h:commandButton action="#{evaluacionBean.guardarEvaluacion()}" class="btn btn-primary my-2" value="Guardar"></h:commandButton>
+                                <h:commandButton action="#{evaluacionBean.guardarEvaluacion()}" class="btn btn-primary my-2" value="#{msgs['editarEvaluacion.botonGuardar']}"></h:commandButton>
                             </div>
                         </div>
                     </h:form>
                     <c:if test="#{evaluacionBean.evaluacionActual.evaluacionId != null}">
-                        <h4 class="text-center my-2">Preguntas</h4>
+                        <h4 class="text-center my-2">#{msgs['editarEvaluacion.tituloPreguntas']}</h4>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            Agregar pregunta
+                            #{msgs['editarEvaluacion.modalBoton']}
                         </button>
                         <div class="row my-5">
                             <ui:repeat value="#{evaluacionBean.evaluacionActual.preguntaList}" var="pregunta">
@@ -49,7 +45,8 @@ and open the template in the editor.
                                                             <h:selectBooleanCheckbox value="#{respuesta.respuestaCorrecta}" disabled="true"/>
                                                         </td>
                                                         <td>
-                                                            <h:outputText value="#{respuesta.textoRespuesta}" />
+                                                            <h:outputText id="textoRespuesta" value="#{respuesta.textoRespuesta}" />
+                                                            <h:message for="textoRespuesta" class="form-control alert alert-danger mt-2"></h:message>
                                                         </td>
                                                     </tr>
                                                 </ui:repeat>
@@ -67,12 +64,12 @@ and open the template in the editor.
                         <div class="modal-content">
                             <h:form>
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Agregar Pregunta</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">#{msgs['editarEvaluacion.modalHeader']}</h5>
                                 </div>
                                 <div class="modal-body">
                                     <h:inputText value="#{evaluacionBean.preguntaActual.textoPregunta}"></h:inputText>
                                     <hr />
-                                    <h4>Respuetas</h4>
+                                    <h4>#{msgs['editarEvaluacion.h4']}</h4>
                                     <ui:repeat value="#{evaluacionBean.preguntaActual.respuestaList}" var="respuesta">
                                         <div class="form-row">
                                             <div class="col-md-1">
@@ -82,13 +79,14 @@ and open the template in the editor.
                                             </div>
                                             <div class="col-md-11 mb-3">
                                                 <h:inputText value="#{respuesta.textoRespuesta}" class="form-control sm"></h:inputText>
+                                                <h:message for="textoRespuesta" class="form-control alert alert-danger mt-2"></h:message>
                                             </div>
                                         </div>
                                     </ui:repeat>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                    <h:commandButton value="Agregar" action="#{evaluacionBean.agregarPregunta()}" class="btn btn-primary"></h:commandButton>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">#{msgs['editarEvaluacion.botonCerrar']}</button>
+                                    <h:commandButton value="#{msgs['editarEvaluacion.botonAgregar']}" action="#{evaluacionBean.agregarPregunta()}" class="btn btn-primary"></h:commandButton>
                                 </div>
                             </h:form>
                         </div>

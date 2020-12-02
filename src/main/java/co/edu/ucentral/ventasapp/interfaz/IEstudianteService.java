@@ -6,4 +6,6 @@ import javax.ejb.Local;
 @Local
 public interface IEstudianteService {
     public Estudiante ObtenerPorId(int id);
+    public Estudiante ObtenerPorLogin(String correo);
+    
 }

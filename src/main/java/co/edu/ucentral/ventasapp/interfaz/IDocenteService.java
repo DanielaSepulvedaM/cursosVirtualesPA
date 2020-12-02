@@ -6,4 +6,5 @@ import java.util.List;
 public interface IDocenteService {
     public List<Docente> listarDocentes();
     public Docente ObtenerPorId(int id);
+    public Docente ObtenerPorLogin(String correo);
 }

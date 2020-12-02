@@ -20,7 +20,8 @@ import javax.validation.constraints.Size;
 @Table(name = "estudiantes")
 @NamedQueries({
     @NamedQuery(name = "Estudiante.findAll", query = "SELECT e FROM Estudiante e"),
-    @NamedQuery(name = "Estudiante.findByEstudianteId", query = "SELECT e FROM Estudiante e WHERE e.estudianteId = :estudianteId")})
+    @NamedQuery(name = "Estudiante.findByEstudianteId", query = "SELECT e FROM Estudiante e WHERE e.estudianteId = :estudianteId"),
+    @NamedQuery(name = "Estudiante.findByCorreo", query = "SELECT d FROM Estudiante d WHERE d.correo = :correo")})
 public class Estudiante implements Serializable {
 
     private static final long serialVersionUID = 1L;

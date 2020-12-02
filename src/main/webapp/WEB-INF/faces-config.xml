@@ -49,10 +49,27 @@
     <navigation-rule id="6">
         <from-view-id>*</from-view-id>
         <navigation-case>
-            <from-outcome>nuevaEvaluacion</from-outcome>
-            <to-view-id>/pages/evaluacion/nuevaEvaluacion.xhtml</to-view-id>
+            <from-outcome>indexPrincipal</from-outcome>
+            <to-view-id>/pages/estudiante/indexPrincipal.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    <navigation-rule id="7">
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>cursosInscritos</from-outcome>
+            <to-view-id>/pages/estudiante/cursosInscritos.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+     <navigation-rule id="8">
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>noPuedeInscribirCurso</from-outcome>
+            <to-view-id>/pages/estudiante/noPuedeInscribirCurso.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
     
     
     <application>

@@ -12,48 +12,48 @@
         <ui:composition template="../../WEB-INF/plantillas/plantilla.xhtml">
             <ui:define name="content">
                 <div class="card  mb-3" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
-                    <div class="card-header text-muted">Listado de Cursos</div>
+                    <div class="card-header text-muted">#{msgs['listadoCursos.cardTitulo']}</div>
                     <div class="card-body text-primary">
                         <h:form>
-                            <h:commandButton action="#{cursoBean.nuevoCurso()}" value="Crear Curso" class="btn btn-primary my-2" />
+                            <h:commandButton action="#{cursoBean.nuevoCurso()}" value="#{msgs['listadoCursos.commanButtonRegresar']}" class="btn btn-primary my-2" />
                             <h:dataTable value="#{cursoBean.cursos}" var="curso" class="table table-hover pl-2">
                                 <h:column>
-                                    <f:facet name="header">Id</f:facet>
+                                    <f:facet name="header">#{msgs['listadoCursos.facetId']}</f:facet>
                                     <h:outputText value="#{curso.cursoId}"></h:outputText>
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header">Nombre</f:facet>
+                                    <f:facet name="header">#{msgs['listadoCursos.facetNombre']}</f:facet>
                                     <h:outputText value="#{curso.nombre}"></h:outputText>
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header">Descripcion</f:facet>
+                                    <f:facet name="header">#{msgs['listadoCursos.facetDescripcion']}</f:facet>
                                     <h:outputText value="#{curso.descripcion}"></h:outputText>
                                 </h:column>
                                 
                                 <h:column>
-                                    <f:facet name="header">Tiempo(horas)</f:facet>
+                                    <f:facet name="header">#{msgs['listadoCursos.facetTiempo']}</f:facet>
                                     <h:outputText value="#{curso.duracionCurso}"></h:outputText>
                                 </h:column>
                                 
                                 <h:column>
-                                    <f:facet name="header">Docente</f:facet>
+                                    <f:facet name="header">#{msgs['listadoCursos.facetDocente']}</f:facet>
                                     <h:outputText value="#{curso.docente.nombre}"></h:outputText>
                                 </h:column>
 
                                  <h:column>
-                                    <f:facet name="header">Curso Publicado</f:facet>
+                                    <f:facet name="header">#{msgs['listadoCursos.facetCursoPublicado']}</f:facet>
                                     <h:outputText value="#{curso.cursoPublicado}"></h:outputText>
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header">Departamento</f:facet>
+                                    <f:facet name="header">#{msgs['listadoCursos.facetDepartamento']}</f:facet>
                                     <h:outputText value="#{curso.departamento.nombre}"></h:outputText>
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header">Editar</f:facet>
+                                    <f:facet name="header">#{msgs['listadoCursos.facetEditar']}</f:facet>
                                     <h:commandButton action="#{cursoBean.editar(curso.cursoId)}"  value="Editar" class="btn btn-secondary btn-sm" style="background:#3176B1"></h:commandButton>
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header">Evaluacion</f:facet>
+                                    <f:facet name="header">#{msgs['listadoCursos.facetEvaluacion']}</f:facet>
                                     <h:commandButton action="#{evaluacionBean.cargarEvaluacion(curso.cursoId)}" value="Evaluacion" class="btn btn-secondary btn-sm"></h:commandButton>
                                 </h:column>
                             </h:dataTable>

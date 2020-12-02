@@ -12,19 +12,19 @@
         <ui:composition template="../../WEB-INF/plantillas/plantilla.xhtml">
             <ui:define name="content">
                 <div class="card border-primary mb-3">
-                    <div class="card-header">Editar Curso</div>
+                    <div class="card-header">#{msgs['edicionCurso.cardTitulo']}</div>
                     <div class="card-body text-primary">
                         <h:form>
-                            <h:commandButton action="listadoCursos" value="Regresar" style="text-decoration: underline;" class="btn btn-light my-2 text-muted"/>
+                            <h:commandButton action="listadoCursos" value="#{msgs['edicionCurso.commanButtonRegresar']}" style="text-decoration: underline;" class="btn btn-light my-2 text-muted"/>
                             <h:inputHidden id="id" value="#{cursoBean.curso.cursoId}"></h:inputHidden>
                             
                             <div class="form-group">
-                                <h:outputLabel for="nombre" class="control-label col-sm-4">Nombre del curso</h:outputLabel>
+                                <h:outputLabel for="nombre" class="control-label col-sm-4">#{msgs['edicionCurso.outputLabelNombre']}</h:outputLabel>
                                 <h:inputText id="nombre" value="#{cursoBean.curso.nombre}" class="form-control"></h:inputText>
                             </div>
                             
                             <div class="form-group">
-                                <label for="facultad">Facultad</label>
+                                <label for="facultad">#{msgs['edicionCurso.labelFacultad']}</label>
                                 <h:selectOneMenu id="facultad" value="#{cursoBean.facultadSeleccionada}">
                                     <f:selectItem itemValue="#{null}" itemLabel="-- select --" />
                                     <f:selectItems value="#{cursoBean.faculdesDisponibles}" var="f" itemLabel="#{f.nombre}" itemValue="#{f.facultadId}" />
@@ -33,7 +33,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="departamento">Departamento</label>
+                                <label for="departamento">#{msgs['edicionCurso.labelDepartamento']}</label>
                                 <h:selectOneMenu id="departamento" value="#{cursoBean.departamentoSeleccionado}">
                                     <f:selectItem itemValue="#{null}" itemLabel="-- select --" />
                                     <f:selectItems value="#{cursoBean.departamentoDisponibles}" var="d" itemLabel="#{d.nombre}" itemValue="#{d.departamentoId}"/>
@@ -41,7 +41,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="docente">Docente</label>
+                                <label for="docente">#{msgs['edicionCurso.labelDocente']}</label>
                                 <h:selectOneMenu id="docente" value="#{cursoBean.docenteSeleccionado}">
                                     <f:selectItem itemValue="#{null}" itemLabel="--Selec--"></f:selectItem>
                                     <f:selectItems value="#{cursoBean.docentesDisponibles}" var="docente" itemLabel="#{docente.nombre}" itemValue="#{docente.docenteId}" ></f:selectItems>
@@ -50,16 +50,16 @@
                             
                              
                             <div class="form-group">
-                                <h:outputLabel for="descripcion" class="control-label col-sm-4">Descripcion</h:outputLabel>
+                                <h:outputLabel for="descripcion" class="control-label col-sm-4">#{msgs['edicionCurso.outputLabelDescripcion']}</h:outputLabel>
                                 <h:inputText  id="descripcion" class="form-control"  value="#{cursoBean.curso.descripcion}"></h:inputText>
                             </div>
                             
                              <div class="form-group">
-                                <h:outputLabel for="duracion" class="control-label col-sm-4">Duracion del curso</h:outputLabel>
+                                <h:outputLabel for="duracion" class="control-label col-sm-4">#{msgs['edicionCurso.outputLabelDuracion']}</h:outputLabel>
                                 <h:inputText id="duracion" class="form-control"  value="#{cursoBean.curso.duracionCurso}"></h:inputText>
                             </div>
                             <div class="form-group">
-                                <h:commandButton value="Editar" action="#{cursoBean.modificarCurso()}" class="btn btn-primary" style="width: 80px;"/>
+                                <h:commandButton value="#{msgs['edicionCurso.commanButtonEditar']}" action="#{cursoBean.modificarCurso()}" class="btn btn-primary" style="width: 80px;"/>
                             </div>
                         </h:form>
                     </div>   
