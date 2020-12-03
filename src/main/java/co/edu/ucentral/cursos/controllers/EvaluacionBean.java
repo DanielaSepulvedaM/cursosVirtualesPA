@@ -21,6 +21,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -69,8 +70,9 @@ public class EvaluacionBean implements Serializable {
         return "editarEvaluacion";
     }
     
-    public String presentarEvaluacion(int evaluacionId){
-        evaluacionActual = this.evaluacionSvc.ObtenerPorId(evaluacionId);
+    public String presentarEvaluacion(int cursoId){
+        evaluacionActual = this.evaluacionSvc.ObtenerEvaluacionCurso(cursoId);
+        evaluacionActual.getPreguntaList().forEach(p -> p.getRespuestaList().forEach(r -> r.setRespuestaCorrecta(false)));
         return "presentarEvaluacion";
     }
     

@@ -23,8 +23,8 @@
                             <ui:repeat value="#{pregunta.respuestaList}" var="respuesta">
                                 <div class="form-group row">
                                     <div class="col pl-5">
-                                        <input type="checkbox" class="form-check-input" id="pregunta">
-                                            <label class="form-check-label " >#{respuesta.textoRespuesta}</label>
+                                        <h:selectBooleanCheckbox value="#{respuesta.respuestaCorrecta}" class="form-check-input"/>
+                                        <label class="form-check-label">#{respuesta.textoRespuesta}</label>
                                     </div>
                                 </div>
                             </ui:repeat>
