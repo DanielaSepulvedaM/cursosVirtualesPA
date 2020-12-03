@@ -6,6 +6,7 @@ import co.edu.ucentral.cursos.models.CursoInscrito;
 import co.edu.ucentral.cursos.models.Estudiante;
 import javax.persistence.EntityManager;
 import co.edu.ucentral.ventasapp.interfaz.ICursoInscritoService;
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -41,10 +42,9 @@ public class CursoInscritoService extends DAO<CursoInscrito, Integer> implements
             CursoInscrito cursoIns = new CursoInscrito();
             cursoIns.setCurso(curso);
             cursoIns.setEstudiante(estudiante);
+            cursoIns.setCursoInscritoCalificado(false);
+            cursoIns.setFechaInscripcion(new Date());
             this.create(cursoIns, manager);
-            //logica para incribir un curso
-            //intancia del estudiante y del curso 
-            
         }else{
            throw new NoPuedeInscribirException("No puede incribir mas cursos ya registra un curso inscrito");
         }
