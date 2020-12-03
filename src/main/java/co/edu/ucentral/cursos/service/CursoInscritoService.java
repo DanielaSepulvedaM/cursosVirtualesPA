@@ -7,6 +7,7 @@ import co.edu.ucentral.cursos.models.Estudiante;
 import javax.persistence.EntityManager;
 import co.edu.ucentral.ventasapp.interfaz.ICursoInscritoService;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -23,7 +24,7 @@ public class CursoInscritoService extends DAO<CursoInscrito, Integer> implements
    
     @Override
     public CursoInscrito find(Integer id) {
-        return null;// _em.find(CursoInscrito.class, id);
+        return this.manager.find(CursoInscrito.class, id);
     }
 
     
@@ -38,7 +39,7 @@ public class CursoInscritoService extends DAO<CursoInscrito, Integer> implements
 
     @Override
     public void IncribirCurso(Curso curso, Estudiante estudiante) throws NoPuedeInscribirException {
-         boolean resultado = puedeInscribirCurso(estudiante.getEstudianteId());
+        boolean resultado = puedeInscribirCurso(estudiante.getEstudianteId());
         if(resultado){
             CursoInscrito cursoIns = new CursoInscrito();
             cursoIns.setCurso(curso);
@@ -51,6 +52,9 @@ public class CursoInscritoService extends DAO<CursoInscrito, Integer> implements
         }
     }
 
-
-    
+    @Override
+    public List<CursoInscrito> listarCursos(int idEstudiante) {
+        return manager.createNamedQuery("CursoInscrito.findByEstudianteId").setParameter("idEstudiante",idEstudiante)
+                      .getResultList();
+    }    
 }

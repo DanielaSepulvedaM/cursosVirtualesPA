@@ -62,16 +62,14 @@
         </navigation-case>
     </navigation-rule>
     
-     <navigation-rule id="8">
+    <navigation-rule id="8">
         <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>noPuedeInscribirCurso</from-outcome>
             <to-view-id>/pages/estudiante/noPuedeInscribirCurso.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-    
-    
-    
+  
     <application>
          <locale-config>
             <default-locale>es</default-locale>

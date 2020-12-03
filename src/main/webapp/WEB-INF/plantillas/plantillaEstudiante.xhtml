@@ -12,11 +12,19 @@
     <h:body>
         <nav class="navbar navbar-expand-lg navbar-light" style="background:#C199C5">
             <h:form>
-                <a class="navbar-brand" style="color: white">#{msgs['plantilla.tituloPagina']}</a>     
+                <a class="navbar-brand" style="color: white">#{msgs['plantilla.tituloPagina']}</a>  
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <h:commandLink class="nav-link active" action="cursosInscritos">Cursos Inscritos</h:commandLink>
+                    </div>
+                </div>
             </h:form>    
         </nav>
         <div class="container  my-2">
-            <ui:insert name="content2">Contenido</ui:insert>
+            <ui:insert name="content1">Contenido estudiante</ui:insert>
         </div>
     </h:body>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
