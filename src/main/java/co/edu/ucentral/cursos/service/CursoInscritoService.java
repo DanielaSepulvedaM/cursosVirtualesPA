@@ -29,7 +29,8 @@ public class CursoInscritoService extends DAO<CursoInscrito, Integer> implements
     
     private boolean puedeInscribirCurso(int idEstudiante) {
       try {
-            return  (boolean) manager.createNamedQuery("CursoInscrito.findByEstudianteId").setParameter("idEstudiante",idEstudiante).getSingleResult();
+            manager.createNamedQuery("CursoInscrito.findByEstudianteId").setParameter("idEstudiante",idEstudiante).getSingleResult();
+            return  false; 
         } catch (NoResultException e) {
             return true;
         }  
