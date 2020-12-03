@@ -6,6 +6,7 @@
 package co.edu.ucentral.cursos.controllers;
 
 import co.edu.ucentral.cursos.models.Curso;
+import co.edu.ucentral.cursos.models.Estudiante;
 import co.edu.ucentral.cursos.models.Evaluacion;
 import co.edu.ucentral.cursos.models.Pregunta;
 import co.edu.ucentral.cursos.models.Respuesta;
@@ -15,8 +16,11 @@ import co.edu.ucentral.ventasapp.interfaz.IPreguntaService;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -28,8 +32,10 @@ import javax.inject.Named;
 @SessionScoped
 public class EvaluacionBean implements Serializable {
     
-    Evaluacion evaluacionActual;
+    private Evaluacion evaluacionActual;
+    
     private Pregunta preguntaActual;
+    private Estudiante estudiante;
     
     int CursoId;
     
@@ -63,8 +69,23 @@ public class EvaluacionBean implements Serializable {
         return "editarEvaluacion";
     }
     
+    public String presentarEvaluacion(int evaluacionId){
+        evaluacionActual = this.evaluacionSvc.ObtenerPorId(evaluacionId);
+        return "presentarEvaluacion";
+    }
+    
     //GET SET
 
+    
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
+    }
+    
+    
     public Evaluacion getEvaluacionActual() {
         return evaluacionActual;
     }

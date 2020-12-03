@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Presentar Evaluacion</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="../../WEB-INF/plantillas/plantillaEstudiante.xhtml">
+            <ui:define name="content1">
+                
+                <h:form class="container border solid my-5" style="max-width: 40rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); background:rgba(193, 153, 197,0.29)">
+                    <h5 class="text-center pt-3">Nombre de la evaluacion</h5>
+                    <small  class="form-text text-muted">Evaluacion compuesta de preguntas de seleccion multiple con unica respuesta, escoja la respuesta correcta,</small>
+                    <ui:repeat value="#{evaluacionBean.evaluacionActual.preguntaList}" var="pregunta">
+                        <div class="my-4">
+                            <div id="pregunta" class="form-group row pl-4">
+                                <label  for="pregunta" class="col-form-label font-weight-bold">#{pregunta.textoPregunta}</label>
+                            </div>
+                            <h5 class="font-weight-lighter text-center pt-3">Respuestas</h5>
+                            <ui:repeat value="#{pregunta.respuestaList}" var="respuesta">
+                                <div class="form-group row">
+                                    <div class="col pl-5">
+                                        <input type="checkbox" class="form-check-input" id="pregunta">
+                                            <label class="form-check-label " >#{respuesta.textoRespuesta}</label>
+                                    </div>
+                                </div>
+                            </ui:repeat>
+                        </div>
+                    </ui:repeat>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <h:commandButton  value="Enviar" type="button" class="btn btn-outline-primary btn-lg btn-block btn-sm" />
+                        </div>
+                    </div>
+                </h:form>   
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

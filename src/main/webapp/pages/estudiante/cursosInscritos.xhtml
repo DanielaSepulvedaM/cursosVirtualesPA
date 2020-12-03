@@ -32,7 +32,7 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">Presentar Evaluacion</f:facet>
-                                    <h:commandButton  value="Editar" class="btn btn-secondary btn-sm"></h:commandButton>
+                                    <h:commandButton action="#{evaluacionBean.presentarEvaluacion(evaluacionId, estudianteId)}" value="Evaluacion" class="btn btn-secondary btn-sm"></h:commandButton>
                                 </h:column>
                             </h:dataTable>
                         </h:form>

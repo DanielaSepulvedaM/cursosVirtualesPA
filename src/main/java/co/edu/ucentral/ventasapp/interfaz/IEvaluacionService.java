@@ -1,5 +1,6 @@
 package co.edu.ucentral.ventasapp.interfaz;
 
+import co.edu.ucentral.cursos.models.Estudiante;
 import co.edu.ucentral.cursos.models.Evaluacion;
 import javax.ejb.Local;
 
@@ -14,4 +15,5 @@ public interface IEvaluacionService {
     
     public Evaluacion ObtenerEvaluacionCurso(int cursoId);
     
+    public void  GuardarEvaluacion(Evaluacion evaluacion, Estudiante estudiante);
 }

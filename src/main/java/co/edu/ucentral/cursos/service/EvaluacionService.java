@@ -1,6 +1,7 @@
 package co.edu.ucentral.cursos.service;
 
 
+import co.edu.ucentral.cursos.models.Estudiante;
 import co.edu.ucentral.cursos.models.Evaluacion;
 import javax.persistence.EntityManager;
 import co.edu.ucentral.ventasapp.interfaz.IEvaluacionService;
@@ -48,5 +49,12 @@ public class EvaluacionService extends DAO<Evaluacion, Integer> implements IEval
             return null;
         }
     }
+
+    @Override
+    public void GuardarEvaluacion(Evaluacion evaluacion, Estudiante estudiante) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
     
 }
