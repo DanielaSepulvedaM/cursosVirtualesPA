@@ -38,7 +38,7 @@ public class CursoInscritoBean implements Serializable{
         Map<String, Object> sessionMap = externalContext.getSessionMap();
         
         estudiante = (Estudiante)sessionMap.get("estudiante");
-        this.cursoInscritoService.listarCursos(estudiante.getEstudianteId());
+        cursosInscritos = this.cursoInscritoService.listarCursos(estudiante.getEstudianteId());
 
         return "cursosInscritos";
     }
