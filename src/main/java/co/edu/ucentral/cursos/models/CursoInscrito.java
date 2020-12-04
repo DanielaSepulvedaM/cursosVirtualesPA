@@ -52,7 +52,7 @@ public class CursoInscrito implements Serializable {
     @Column(name = "CursoInscritoCalificado")
     private boolean cursoInscritoCalificado;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cursoInscrito")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cursoInscrito",fetch = FetchType.EAGER)
     private List<EvaluacionRealizada> evaluacionRealizadaList;
     
     @JoinColumn(name = "CursoId", referencedColumnName = "CursoId")

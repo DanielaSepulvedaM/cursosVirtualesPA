@@ -14,7 +14,16 @@
             <ui:define name="content1">
                 <div class="card  mb-3" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
                     <div class="card-body text-primary">
-                        <h1>APROBADO</h1>
+                        <h:form>
+                            <h:column>
+                                    <f:facet name="header">Curso Aprobado</f:facet>
+                                    <h:outputText value="APROBADO"></h:outputText>
+                            </h:column> 
+                            <h:column>
+                                    <f:facet name="header">Nota</f:facet>
+                                    <h:outputText value="#{cursoInscrito.cursoInscritoId}"></h:outputText>
+                            </h:column> 
+                        </h:form>
                     </div>
                 </div>
             </ui:define>
