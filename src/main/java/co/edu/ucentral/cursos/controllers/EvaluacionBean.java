@@ -88,13 +88,13 @@ public class EvaluacionBean implements Serializable {
         return "presentarEvaluacion";
     }
     
-    public String calificarEvaluacion(int evaluacionId){
+    public String calificarEvaluacion(){
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         Map<String, Object> sessionMap = externalContext.getSessionMap();
         
         estudiante = (Estudiante)sessionMap.get("estudiante");
         
-        Evaluacion evaluacion = this.evaluacionSvc.ObtenerPorId(evaluacionId);
+        Evaluacion evaluacion = this.evaluacionSvc.ObtenerPorId(evaluacionActual.getEvaluacionId());
         
         int puntos = 0;
         for(int i = 0; i < evaluacion.getPreguntaList().size();i++){
@@ -111,7 +111,7 @@ public class EvaluacionBean implements Serializable {
                 puntos++;
         }
         
-        double nota = ((double)evaluacion.getPreguntaList().size() / 5) * puntos;
+        double nota = ((double)5 / evaluacion.getPreguntaList().size()) * puntos;
         
         CursoInscrito c = cursoInscritoService.find(CursoInscritoId);
         EvaluacionRealizada eva = new EvaluacionRealizada();
@@ -123,12 +123,12 @@ public class EvaluacionBean implements Serializable {
         if(nota < 3.0)
         {
             //pierde
-             return "";
+             return "evaluacionDesaprobada";
         }
         else
         {
             //pasa
-             return "";
+             return "evaluacionAprobada";
         }
     }
     
