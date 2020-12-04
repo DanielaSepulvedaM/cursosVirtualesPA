@@ -9,6 +9,8 @@ import javax.ejb.Local;
 
 @Local
 public interface ICursoInscritoService  {
+    
+    public CursoInscrito find(int id);
     public List<CursoInscrito> listarCursos(int idEstudiante);
     public void IncribirCurso(Curso curso,Estudiante estudiante) throws NoPuedeInscribirException;
     

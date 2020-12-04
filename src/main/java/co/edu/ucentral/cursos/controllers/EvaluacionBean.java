@@ -6,11 +6,15 @@
 package co.edu.ucentral.cursos.controllers;
 
 import co.edu.ucentral.cursos.models.Curso;
+import co.edu.ucentral.cursos.models.CursoInscrito;
 import co.edu.ucentral.cursos.models.Estudiante;
 import co.edu.ucentral.cursos.models.Evaluacion;
+import co.edu.ucentral.cursos.models.EvaluacionRealizada;
 import co.edu.ucentral.cursos.models.Pregunta;
 import co.edu.ucentral.cursos.models.Respuesta;
+import co.edu.ucentral.ventasapp.interfaz.ICursoInscritoService;
 import co.edu.ucentral.ventasapp.interfaz.ICursoService;
+import co.edu.ucentral.ventasapp.interfaz.IEvaluacionRealizadaService;
 import co.edu.ucentral.ventasapp.interfaz.IEvaluacionService;
 import co.edu.ucentral.ventasapp.interfaz.IPreguntaService;
 import java.io.Serializable;
@@ -21,7 +25,6 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -38,6 +41,8 @@ public class EvaluacionBean implements Serializable {
     private Pregunta preguntaActual;
     private Estudiante estudiante;
     
+    private int CursoInscritoId;
+    
     int CursoId;
     
     @Inject
@@ -48,6 +53,12 @@ public class EvaluacionBean implements Serializable {
     
     @Inject
     IPreguntaService preguntaService;
+    
+    @Inject
+    IEvaluacionRealizadaService evaluacionRealizadaService;
+    
+    @Inject
+    ICursoInscritoService cursoInscritoService;
     
     @PostConstruct
     public  void inicializar(){
@@ -70,10 +81,55 @@ public class EvaluacionBean implements Serializable {
         return "editarEvaluacion";
     }
     
-    public String presentarEvaluacion(int cursoId){
+    public String presentarEvaluacion(int cursoId, int cursoInscritoId){
+        CursoInscritoId = cursoInscritoId;
         evaluacionActual = this.evaluacionSvc.ObtenerEvaluacionCurso(cursoId);
         evaluacionActual.getPreguntaList().forEach(p -> p.getRespuestaList().forEach(r -> r.setRespuestaCorrecta(false)));
         return "presentarEvaluacion";
+    }
+    
+    public String calificarEvaluacion(int evaluacionId){
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        Map<String, Object> sessionMap = externalContext.getSessionMap();
+        
+        estudiante = (Estudiante)sessionMap.get("estudiante");
+        
+        Evaluacion evaluacion = this.evaluacionSvc.ObtenerPorId(evaluacionId);
+        
+        int puntos = 0;
+        for(int i = 0; i < evaluacion.getPreguntaList().size();i++){
+            List<Respuesta> respuestasCorrectas = evaluacion.getPreguntaList().get(i).getRespuestaList();
+            List<Respuesta> respuestasAlumno = evaluacionActual.getPreguntaList().get(i).getRespuestaList();
+            
+            Boolean respuestaEsCorrecta = true;
+            for(int j = 0; j < respuestasCorrectas.size();j++){
+                respuestaEsCorrecta = respuestasAlumno.get(j).getRespuestaCorrecta() == respuestasCorrectas.get(j).getRespuestaCorrecta();
+                if(!respuestaEsCorrecta)
+                    j = respuestasCorrectas.size(); //rompe ciclo
+            }
+            if(respuestaEsCorrecta)
+                puntos++;
+        }
+        
+        double nota = ((double)evaluacion.getPreguntaList().size() / 5) * puntos;
+        
+        CursoInscrito c = cursoInscritoService.find(CursoInscritoId);
+        EvaluacionRealizada eva = new EvaluacionRealizada();
+        eva.setCursoInscrito(c);
+        eva.setNota(nota);
+        eva.setEvaluacion(evaluacion);
+        this.evaluacionRealizadaService.insertar(eva);
+        
+        if(nota < 3.0)
+        {
+            //pierde
+             return "";
+        }
+        else
+        {
+            //pasa
+             return "";
+        }
     }
     
     //GET SET

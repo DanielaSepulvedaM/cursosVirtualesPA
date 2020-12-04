@@ -57,4 +57,9 @@ public class CursoInscritoService extends DAO<CursoInscrito, Integer> implements
         return manager.createNamedQuery("CursoInscrito.findByEstudianteId").setParameter("idEstudiante",idEstudiante)
                       .getResultList();
     }    
+
+    @Override
+    public CursoInscrito find(int id) {
+        return this.manager.find(CursoInscrito.class, id);
+    }
 }
