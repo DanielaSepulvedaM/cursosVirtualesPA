@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,10 +20,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "cursosinscritos")
+@Cacheable(false)
 @NamedQueries({
     @NamedQuery(name = "CursoInscrito.findAll", query = "SELECT c FROM CursoInscrito c"),
     @NamedQuery(name = "CursoInscrito.findByCursoInscritoId", query = "SELECT c FROM CursoInscrito c WHERE c.cursoInscritoId = :cursoInscritoId"),
@@ -62,6 +65,17 @@ public class CursoInscrito implements Serializable {
     @JoinColumn(name = "EstudianteId", referencedColumnName = "EstudianteId")
     @ManyToOne(optional = false)
     private Estudiante estudiante;
+    
+    @Transient
+    private double Nota;
+
+    public double getNota() {
+        return Nota;
+    }
+
+    public void setNota(double Nota) {
+        this.Nota = Nota;
+    }
 
     public CursoInscrito() {
     }

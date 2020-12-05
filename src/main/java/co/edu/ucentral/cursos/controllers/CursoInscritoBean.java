@@ -39,7 +39,22 @@ public class CursoInscritoBean implements Serializable{
         
         estudiante = (Estudiante)sessionMap.get("estudiante");
         cursosInscritos = this.cursoInscritoService.listarCursos(estudiante.getEstudianteId());
-
+        
+        cursosInscritos.forEach(c -> {
+            if(c.getEvaluacionRealizadaList().size() == 0){
+                c.setCursoInscritoCalificado(false);
+            }
+            else
+            {
+                c.setNota(c.getEvaluacionRealizadaList().get(c.getEvaluacionRealizadaList().size() - 1).getNota());
+                if(c.getEvaluacionRealizadaList().get(c.getEvaluacionRealizadaList().size() - 1).getNota() >= 3.0){
+                    c.setCursoInscritoCalificado(true);
+                }
+                else
+                    c.setCursoInscritoCalificado(false);
+            }
+        });
+        
         return "cursosInscritos";
     }
 
@@ -57,6 +72,15 @@ public class CursoInscritoBean implements Serializable{
            return "noPuedeInscribirCurso";  
         }
        return "cursosInscritos";
+    }
+    
+    public double demeNota(CursoInscrito cursoIns){
+        return cursoIns.getEvaluacionRealizadaList().get(cursoIns.getEvaluacionRealizadaList().size() -1).getNota();
+    }
+    
+    public boolean mostrarBoton(CursoInscrito cursoIns){
+        return cursoIns.getEvaluacionRealizadaList().size() == 0 
+                || cursoIns.getEvaluacionRealizadaList().get(cursoIns.getEvaluacionRealizadaList().size() -1).getNota() < 3.0;
     }
     
     

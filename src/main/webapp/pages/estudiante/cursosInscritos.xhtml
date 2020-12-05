@@ -32,7 +32,8 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">Presentar Evaluacion</f:facet>
-                                    <h:commandButton action="#{evaluacionBean.presentarEvaluacion(cursoInscrito.curso.cursoId, cursoInscrito.cursoInscritoId)}" value="Evaluacion" class="btn btn-secondary btn-sm"></h:commandButton>
+                                    <h:outputLabel rendered="#{cursoInscrito.cursoInscritoCalificado}" value="#{cursoInscrito.nota}"></h:outputLabel>
+                                   <h:commandButton rendered="#{not cursoInscrito.cursoInscritoCalificado}" action="#{evaluacionBean.presentarEvaluacion(cursoInscrito.curso.cursoId, cursoInscrito.cursoInscritoId)}" value="Evaluacion" class="btn btn-secondary btn-sm"></h:commandButton>
                                 </h:column>
                             </h:dataTable>
                         </h:form>
