@@ -12,11 +12,15 @@
     <h:body>
         <ui:composition template="../../WEB-INF/plantillas/plantilla.xhtml">
             <ui:define name="content">
-                <div class="card border-primary mb-3">
+                <h2 class="text-center my-5">Crear Cursos</h2>
+                <h:form>
+                    <h:commandButton action="listadoCursos" value="#{msgs['edicionCurso.commanButtonRegresar']}" style="text-decoration: underline;" class="btn btn-light my-2 text-muted"/>
+                </h:form>
+                <div class="card  mb-3" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
                     <div class="card-header">#{msgs['nuevoCurso.cardTitulo']}</div>
                     <div class="card-body text-primary">
                         <h:form>
-                            <h:commandButton action="listadoCursos" value="#{msgs['nuevoCurso.commanButtonRegresar']}" style="text-decoration: underline;" class="btn btn-light my-2 text-muted"/>
+                         
                             <div class="form-group">
                                 <h:outputLabel for="nombre" class="control-label col-sm-4">#{msgs['nuevoCurso.labelNombre']}</h:outputLabel>
                                 <h:inputText  class="form-control" id="nombre" value="#{cursoBean.curso.nombre}"></h:inputText>
@@ -24,26 +28,26 @@
                             
                             <div class="form-group">
                                 <label for="facultad">#{msgs['nuevoCurso.labelFacultad']}</label>
-                                <h:selectOneMenu id="facultad" value="#{cursoBean.facultadSeleccionada}">
-                                    <f:selectItem itemValue="#{null}" itemLabel="-- select --" />
-                                    <f:selectItems value="#{cursoBean.faculdesDisponibles}" var="f" itemLabel="#{f.nombre}" itemValue="#{f.facultadId}" />
+                                <h:selectOneMenu class="form-control" id="facultad" value="#{cursoBean.facultadSeleccionada}">
+                                    <f:selectItem class="form-control" itemValue="#{null}" itemLabel="-- seleccionar una facultad --" />
+                                    <f:selectItems class="form-control" value="#{cursoBean.faculdesDisponibles}" var="f" itemLabel="#{f.nombre}" itemValue="#{f.facultadId}" />
                                     <f:ajax listener="#{cursoBean.cambioFacultad(event)}"  event="change" execute="@this" render="departamento"/>
                                 </h:selectOneMenu> 
                             </div>
                             
                             <div class="form-group">
                                 <label for="departamento">#{msgs['nuevoCurso.labelDepartamento']}</label>
-                                <h:selectOneMenu id="departamento" value="#{cursoBean.departamentoSeleccionado}">
-                                    <f:selectItem itemValue="#{null}" itemLabel="-- select --" />
-                                    <f:selectItems value="#{cursoBean.departamentoDisponibles}" var="d" itemLabel="#{d.nombre}" itemValue="#{d.departamentoId}"/>
+                                <h:selectOneMenu  class="form-control" id="departamento" value="#{cursoBean.departamentoSeleccionado}">
+                                    <f:selectItem class="form-control" itemValue="#{null}" itemLabel="-- seleccionar un Departamento --" />
+                                    <f:selectItems class="form-control" value="#{cursoBean.departamentoDisponibles}" var="d" itemLabel="#{d.nombre}" itemValue="#{d.departamentoId}"/>
                                 </h:selectOneMenu>
                             </div>
                             
                             <div class="form-group">
                                 <label for="docente">#{msgs['nuevoCurso.labelDocente']}</label>
-                                <h:selectOneMenu id="docente" value="#{cursoBean.docenteSeleccionado}">
-                                    <f:selectItem itemValue="#{null}" itemLabel="--Selec--"></f:selectItem>
-                                    <f:selectItems value="#{cursoBean.docentesDisponibles}" var="docente" itemLabel="#{docente.nombre}" itemValue="#{docente.docenteId}" ></f:selectItems>
+                                <h:selectOneMenu class="form-control" id="docente" value="#{cursoBean.docenteSeleccionado}">
+                                    <f:selectItem class="form-control" itemValue="#{null}" itemLabel="--Selecionar un Docente--"></f:selectItem>
+                                    <f:selectItems class="form-control" value="#{cursoBean.docentesDisponibles}" var="docente" itemLabel="#{docente.nombre}" itemValue="#{docente.docenteId}" ></f:selectItems>
                                 </h:selectOneMenu>
                             </div>
                             
@@ -63,7 +67,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <h:commandButton value="#{msgs['nuevoCurso.commanButtonCrear']}" action="#{cursoBean.guardarCurso()}" class="btn btn-primary"></h:commandButton>
+                                <h:commandButton value="#{msgs['nuevoCurso.commanButtonCrear']}" action="#{cursoBean.guardarCurso()}" class="btn btn-outline-primary btn-lg btn-block" style="background: #C199C5;border:#C199C5 "></h:commandButton>
                             </div>
                             
                             

@@ -12,9 +12,14 @@
     <h:body>
         <ui:composition template="../../WEB-INF/plantillas/plantillaEstudiante.xhtml">
             <ui:define name="content1">
+                <h2 class="text-center my-5">Cursos Inscritos</h2>
+                <h:form>
+                    <h:commandButton action="indexPrincipal" value="#{msgs['edicionCurso.commanButtonRegresar']}" style="text-decoration: underline;" class="btn btn-light my-2 text-muted"/>
+                </h:form>
                 <div class="card  mb-3" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
                     <div class="card-body text-primary">
                         <h:form>
+                            
                             <h:dataTable value="#{cursoInscritoBean.cursosInscritos}" var="cursoInscrito" class="table table-hover pl-2">
                                 <h:column>
                                     <f:facet name="header">Nombre del Curso</f:facet>
