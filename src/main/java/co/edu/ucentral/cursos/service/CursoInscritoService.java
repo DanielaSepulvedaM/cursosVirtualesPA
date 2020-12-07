@@ -16,8 +16,6 @@ import javax.persistence.PersistenceContext;
 public class CursoInscritoService extends DAO<CursoInscrito, Integer> implements ICursoInscritoService{
     
     
-    
-    
     @PersistenceContext(unitName = "CursosUP")
     protected EntityManager manager;
     

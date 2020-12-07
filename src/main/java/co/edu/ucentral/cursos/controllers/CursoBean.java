@@ -3,6 +3,7 @@ package co.edu.ucentral.cursos.controllers;
 import co.edu.ucentral.cursos.models.Curso;
 import co.edu.ucentral.cursos.models.Departamento;
 import co.edu.ucentral.cursos.models.Docente;
+import co.edu.ucentral.cursos.models.Estado;
 import co.edu.ucentral.cursos.models.Facultad;
 import java.util.List;
 import javax.inject.Inject;
@@ -32,14 +33,19 @@ public class CursoBean implements Serializable{
     @Inject
     private IDocenteService docenteService; 
     
+   
+    
     private int facultadSeleccionada;
     private int departamentoSeleccionado;
     private int docenteSeleccionado;
+    private int estadoSeleccionado;
     private List<Facultad>faculdesDisponibles;
     private List<Departamento> departamentoDisponibles;
     private List<Docente> docentesDisponibles;
+    private List<Estado> estadoDisponible;
     private Curso curso;
     private List<Curso>cursos;
+    
      
     //*****NOTACION PARA Q SIEMPRE SE EJECUTE ESTE METODO
     @PostConstruct
@@ -52,6 +58,7 @@ public class CursoBean implements Serializable{
        
        faculdesDisponibles = facultadService.listarFacultades();
        docentesDisponibles = docenteService.listarDocentes();
+       //estadoDisponible = estadoService.listarEstados();
     }
     
     public void cambioFacultad(AjaxBehaviorEvent event){
@@ -183,6 +190,14 @@ public class CursoBean implements Serializable{
 
     public void setDocentesDisponibles(List<Docente> docentesDisponibles) {
         this.docentesDisponibles = docentesDisponibles;
+    }
+
+    public int getEstadoSeleccionado() {
+        return estadoSeleccionado;
+    }
+
+    public void setEstadoSeleccionado(int estadoSeleccionado) {
+        this.estadoSeleccionado = estadoSeleccionado;
     }
     
     

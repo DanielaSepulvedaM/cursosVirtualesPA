@@ -11,6 +11,7 @@ public interface ICursoService {
     public void guardarCurso(Curso curso);
     public void modificarCurso(Curso curso);
     public void eliminarCurso(Curso curso);
+    
     //public void CrearCurso(String nombre,String descripcion, Boolean publicada, int duracion);
     
 }

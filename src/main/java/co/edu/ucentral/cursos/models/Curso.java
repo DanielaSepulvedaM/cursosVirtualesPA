@@ -76,19 +76,26 @@ public class Curso implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "curso")
     private List<CursoInscrito> cursoInscritoList;
 
+    
+    @Column(name = "estado")
+    private String estado;
+            
     public Curso() {
         this.cursoId = 0;
+        this.estado = "activo";
+        //this.estado = "activo";
     }
 
     public Curso(Integer cursoId) {
         this.cursoId = cursoId;
     }
 
-    public Curso(Integer cursoId, boolean cursoPublicado, boolean cursoSuspendido, int duracionCurso) {
+    public Curso(Integer cursoId, boolean cursoPublicado, boolean cursoSuspendido, int duracionCurso, String estado ) {
         this.cursoId = cursoId;
         this.cursoPublicado = cursoPublicado;
         this.cursoSuspendido = cursoSuspendido;
         this.duracionCurso = duracionCurso;
+        this.estado = estado;
     }
 
     public Integer getCursoId() {
@@ -170,6 +177,16 @@ public class Curso implements Serializable {
     public void setCursoInscritoList(List<CursoInscrito> cursoInscritoList) {
         this.cursoInscritoList = cursoInscritoList;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    
 
     
     @Override

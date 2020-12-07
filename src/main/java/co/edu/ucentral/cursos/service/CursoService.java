@@ -19,6 +19,7 @@ public class CursoService extends DAO<Curso, Integer> implements ICursoService{
         return this.manager.find(Curso.class, id);
     }
 
+    
     //METODOS ABSTRACTOS IMPLEMENTADOSDE LA INTERFAZ ICursoService
     @Override
     public List<Curso> listarCursos() {
